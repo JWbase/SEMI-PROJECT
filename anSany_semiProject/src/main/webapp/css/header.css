@@ -1,16 +1,111 @@
-#login-modal .input-box {
-  width: 80%;
-  margin: 0 auto;
-  border-bottom: none;
+body{
+    margin: 0;
+    background-color: black;
+}
+.header-fixed{
+    position: fixed;
+    width: 100%;
+    background-color: black;
+    height: 81px;
+    margin: 0 auto;
+    z-index: 1000;
+}
+.header-top{
+    margin: 0 auto;
+    background-color: black;
+    width: 100%;
+    max-width: 1920px;
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+}
+.header-logo{
+    background-color: black;
+    height: 80px;
+    width: 250px;
+    line-height: 90px;
+    text-align: center;
+}
+.header-logo>a>img{
+    width: 200px;
+}
+.header-navi{
+    background-color: black;
+    height: 81px;
+}
+.header-navi ul{
+    list-style-type: none;
+    padding: 0%;
+    margin: 0;
+    overflow: hidden;
+}
+.header-navi>ul>li a{
+    text-decoration: none;
+    color: white;
+    display: block;
+    font-size: 22px;
+    font-weight: 900;
+}
+.header-navi>ul>li>ul>li>a{
+    font-size: 18px;
+}
+.header-navi>ul>li{
+    width: 200px;
+    float: left;
+    text-align: center;
+    line-height: 80px;
 }
 
-#login-modal .input-box > a:hover {
-  text-decoration: underline;
+.header-navi>ul>li>ul{
+    height: 0;
+    overflow: hidden;
 }
-#login-modal .modal-foot {
-  width: 80%;
-  margin: 0 auto;
+.header-navi>ul>li>ul>li{
+    
+    height: 81px;
 }
-#login-modal .input-box.link-box {
-  text-align: right;
+
+.header-navi:hover>ul>li>ul{
+    height: 320px;
+    transition-duration: 0.3s;
+}
+.header-navi>ul>li>a{
+    border-bottom: 1px solid transparent;
+}
+.header-navi>ul>li:hover>a{
+    color: #5865f5;
+    border-bottom: 1px solid white;
+    
+}
+.header-navi>ul>li>ul>li :hover{
+    color: #5865f5;
+}
+.header-navi>ul>li:hover>ul{
+    overflow: hidden;
+    background-color: rgba(255,255,255,0.05);
+}
+
+
+
+.header-icon{
+    background-color: black;
+    height: 80px;
+    width: 200px;
+}
+.header-icon>div{
+    display: flex;
+    justify-content: space-around;
+}
+.header-icon>div>div>a{
+    display: block;
+    width: 50px;
+}
+.header-icon>div>div>a>span{
+    font-size: 50px;
+    line-height: 80px;
+    color: white;
+}
+.header-icon span:hover{
+    font-size: 50px;
+    color: #5865f5;
 }

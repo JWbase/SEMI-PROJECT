@@ -1,0 +1,193 @@
+.wrapwrap{
+    width: 100%;
+    max-width: 1920px;
+    margin: 0 auto;
+}
+
+.store_info_wrap {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    padding-top: 81px;
+    position: relative;
+    background-color: #fff;
+}
+
+.bg_img {
+    position: relative;
+    width: 100%;
+    height: 880px;
+}
+
+.bg_img img {
+    width: 100%;
+    height: 880px;
+}
+
+.bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .6);
+}
+
+.store_info_wrap_txtbox {
+    position: absolute;
+    top: 120px;
+    width: 100%;
+    margin-bottom: 24px;
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+}
+
+.store_info_wrap_guidebox {
+    position: relative;
+}
+
+.guidebox_wrapper {
+    width: 880px;
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+}
+
+.guidebox {
+    padding: 32px 0;
+    width: 324px;
+    height: 190px;
+    border: 1px solid #fff;
+    color: #fff;
+    text-align: center;
+    box-sizing: border-box;
+    position: relative;
+    margin-left: 24px;
+}
+
+.box_title {
+    font-size: 16px;
+    font-weight: 100;
+}
+
+.everyday {
+    font-size: 20px;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.time {
+    margin-left: 10px;
+    letter-spacing: .2px;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 28px;
+}
+
+.day {
+    font-size: 21px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.box_time {
+    margin-top: 25px;
+}
+
+.way_box{
+    padding: 80px 0 80px;
+    display: flex;
+    justify-content: center;
+}
+.way_box_inner{
+    width: 500px;
+}
+.way_box_addr{
+    width: 500px;
+}
+
+.way_box_addr_title{
+    display: block;
+    font-size: 32px;
+    color: #222;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.way_box_addr_txt{
+    margin-top: 40px;
+    font-size: 24px;
+    color: #444;
+    line-height: 36px;
+}
+.way_box_transp{
+    width: 650px;
+}
+.btn{
+    background: rgb(242, 242, 242);
+    padding: 0.5em;
+    height: 32px;
+    font-size: 14px;
+    min-width: 82px;
+    color: #444;
+    border: 1px solid #ddd;
+}
+
+.route{
+    list-style: none;
+    margin: 0;
+}
+.route li{
+    padding-left: 64px;
+    background-position: 0 50%;
+    font-weight: 500;
+}
+.route_subway{
+    background: url(/img/subway.svg) no-repeat 0 0;
+}
+.route_title{
+    font-size: 18px;
+    font-weight: 700;
+    color: #444;
+    font-style: normal;
+}
+.route_method{
+    margin-top: 3px;
+    font-size: 18px;
+    color: #444;
+    font-weight: 600;
+}
+.route_method span{
+    font-weight: 600;
+}
+.color_subway1{
+    color: #697215;
+    font-weight: 500;
+}
+.color_subway2{
+    color: #ac9800;
+    font-weight: 500;
+}
+.route_bus{
+    background: url(/img/bus.svg) no-repeat 0 0;
+}
+.color_bus1{
+    color: #3353a2;
+}
+.color_bus2{
+    color:#369117;
+}
+.route_car{
+    background: url(/img/car.svg) no-repeat 0 0;
+}
+#map {
+    display: none;
+}
+.btn:hover{
+    cursor: pointer;
+}
