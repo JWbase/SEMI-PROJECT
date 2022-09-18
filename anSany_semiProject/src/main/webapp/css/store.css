@@ -128,7 +128,7 @@
 .way_box_transp{
     width: 650px;
 }
-.btn{
+.btnMap{
     background: rgb(242, 242, 242);
     padding: 0.5em;
     height: 32px;
@@ -188,6 +188,6 @@
 #map {
     display: none;
 }
-.btn:hover{
+.btnMap:hover{
     cursor: pointer;
 }

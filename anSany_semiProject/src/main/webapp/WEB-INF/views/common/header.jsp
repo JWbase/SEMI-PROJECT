@@ -8,8 +8,6 @@
 <!-- 기본 CSS -->
 <link rel="stylesheet" href="/css/header.css" />
 
-
-
 <div class="header-body">
 	<div class="header-fixed">
 		<div class="header-wrap">
@@ -28,7 +26,7 @@
 							</ul></li>
 						<li><a href="#">커뮤니티</a>
 							<ul>
-								<li><a href="#">공지사항</a></li>
+								<li><a href="/noticeList.do?reqPage=1">공지사항</a></li>
 								<li><a href="#">구매후기</a></li>
 								<li><a href="#">사진전</a></li>
 								<li><a href="#">자유게시판</a></li>

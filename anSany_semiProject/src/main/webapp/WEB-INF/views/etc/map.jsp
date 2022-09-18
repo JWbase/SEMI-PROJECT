@@ -95,7 +95,7 @@
 	});
 	const map = new naver.maps.Map("map", {
 		center : new naver.maps.LatLng(37.5235807, 127.0388520),
-		zoom : 17,
+		zoom : 18,
 		zoomControl : true,
 		zoomControlOptions : {
 			position : naver.maps.Position.TOP_RIGHT,
@@ -106,8 +106,7 @@
 		position : new naver.maps.LatLng(37.5235807, 127.0388520),
 		map : map,
 		icon : {
-			url : '/img/marker.png',
-			size : new naver.maps.Size(30, 60),
+			url : '/img/marker.svg',
 			origin : new naver.maps.Point(0, 0),
 		}
 	});
