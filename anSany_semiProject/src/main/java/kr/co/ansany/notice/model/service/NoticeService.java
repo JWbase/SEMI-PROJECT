@@ -66,4 +66,10 @@ public class NoticeService {
 		return npd;
 	}
 
+	public int insertNotice(Notice n) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.insertNotice(conn, n);
+		return 0;
+	}
+
 }

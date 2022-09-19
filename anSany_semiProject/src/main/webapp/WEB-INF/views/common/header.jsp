@@ -1,6 +1,9 @@
+<%@page import="kr.co.ansany.member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+	    <%
+    	Member m = (Member)session.getAttribute("m");
+    %>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 <!-- jquery -->
@@ -54,8 +57,20 @@
 							</a>
 						</div>
 						<div>
-							<a href="#"> <span class="material-icons">person</span>
+							<%
+							if (m == null) {
+							%>
+							<a href="loginFrm.do"> <span class="material-icons">person</span>
 							</a>
+							<%
+							} else {
+							%>
+							<a href="#"> <span class="material-icons"
+								style="color: #5865f5">person</span>
+							</a>
+							<%
+							}
+							%>
 						</div>
 						<div>
 							<a href="#"> <span class="material-icons">search</span>

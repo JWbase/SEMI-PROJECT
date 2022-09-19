@@ -5,6 +5,21 @@
 <head>
 <meta charset="UTF-8">
 <title>직영점 안내 : 찾아오시는 길</title>
+<style>
+.btn {
+	background: rgb(242, 242, 242);
+	padding: 0.5em;
+	height: 32px;
+	font-size: 14px;
+	min-width: 82px;
+	color: #444;
+	border: 1px solid #ddd;
+}
+
+.btn:hover {
+	cursor: pointer;
+}
+</style>
 <link rel="stylesheet" href="css/store.css"></link>
 <script src="/js/jquery-3.6.0.js"></script>
 <script
@@ -95,7 +110,7 @@
 	});
 	const map = new naver.maps.Map("map", {
 		center : new naver.maps.LatLng(37.5235807, 127.0388520),
-		zoom : 18,
+		zoom : 17,
 		zoomControl : true,
 		zoomControlOptions : {
 			position : naver.maps.Position.TOP_RIGHT,
@@ -106,7 +121,7 @@
 		position : new naver.maps.LatLng(37.5235807, 127.0388520),
 		map : map,
 		icon : {
-			url : '/img/marker.svg',
+			url : '/img/marker.png',
 			origin : new naver.maps.Point(0, 0),
 		}
 	});

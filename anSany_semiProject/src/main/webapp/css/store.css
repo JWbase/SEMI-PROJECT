@@ -128,15 +128,6 @@
 .way_box_transp{
     width: 650px;
 }
-.btnMap{
-    background: rgb(242, 242, 242);
-    padding: 0.5em;
-    height: 32px;
-    font-size: 14px;
-    min-width: 82px;
-    color: #444;
-    border: 1px solid #ddd;
-}
 
 .route{
     list-style: none;
@@ -187,7 +178,4 @@
 }
 #map {
     display: none;
-}
-.btnMap:hover{
-    cursor: pointer;
 }

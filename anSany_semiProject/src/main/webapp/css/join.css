@@ -1,0 +1,129 @@
+*{
+    font-family: ns-r;
+}
+body{
+    padding: 0;
+    margin: 0;
+}
+content{
+    display: block;
+    padding-top: 81px;
+    background-color: #fff;
+}
+.join-wrap{
+    margin: 0 auto;
+    padding: 160px 0;
+    max-width: 800px;
+}
+.join-header{
+    text-align: center;
+}
+.join-header>h1{
+    padding-bottom: 25px;
+    font-family: ns-bold;
+}
+.join-header>span{
+    display: inline-block;
+    font-size: 18px;
+    color: gray;
+}
+.join-content{
+    margin-top: 50px;
+}
+form[name=joinFrm]{
+    margin: 0 10px;
+}
+.join-box{
+    margin-bottom: 15px;
+    width: 800px;
+    overflow: hidden;
+}
+.join-box:first-child>input{
+    width: 600px;
+}
+#idChkBtn{
+    border: none;
+    width: 200px;
+    height: 56px;
+    font-size: medium;
+    background-color: #e1e1e1;
+}
+#idChkBtn:hover{
+    cursor: pointer;
+}
+.join-box>label{
+    display: block;
+}
+.join-box>input{
+    float: left;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #e1e1e1;;
+    padding: 20px 0 10px;
+    font-size: 18px;
+}
+.join-box>input:focus{
+    outline-style: none;
+}
+.join-box>span{
+    float: left;
+    width: 100%;
+}
+#memberEmail{
+    width: 600px;
+}
+.sendEmailBtn{
+    width: 200px;
+    height: 56px;
+    border: none;
+    font-size: medium;
+    background-color: #e1e1e1;
+}
+.sendEmailBtn:hover{
+    cursor: pointer;
+}
+#auth{
+    display: none;
+    width: 800px;
+    margin-top: 7px;
+}
+#auth>input{
+    position: relative;
+    width: 300px;
+    border: none;
+    border-bottom: 1px solid #e1e1e1;
+    padding: 20px 0 10px;
+    font-size: 18px;
+}
+#auth>input:focus{
+    outline-style: none;
+}
+#authBtn{
+    position: absolute;
+    width: 200px;
+    height: 56px;
+    border: 0;
+    font-size: medium;
+    background-color: #e1e1e1;
+}
+#authBtn:hover{
+    cursor: pointer;
+}
+.submit-btn{
+    width: 800px;
+    margin-top: 40px;
+    text-align: center;
+}
+.join-btn{
+    padding: 0;
+    width: 100%;
+    height: 56px;
+    border: none;
+    font-size: medium;
+    background-color: #141414;
+    color: #fff;
+}
+.join-btn:hover{
+    cursor: pointer;
+    background-color: #444;
+}

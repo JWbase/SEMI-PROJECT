@@ -68,8 +68,11 @@ tbody tr>td:nth-child(2) {
 	border-bottom: 2px solid transparent;
 }
 
-.page-navi a:hover {
-	color: #ea0029;
+.tablink:hover{
+    color: #ea0029;
+}
+.tablink.active{
+    color: #ea0029;
 }
 
 .table_wrap {
@@ -81,9 +84,14 @@ tbody tr>td:nth-child(2) {
 .pagination {
 	justify-content: center;
 	align-items: center;
+	
 }
 
-.table{
+.pagination a{
+	color : black;
+}
+
+.table {
 	width: 1280px;
 	margin: 0 auto;
 	margin-bottom: 50px;
@@ -93,11 +101,57 @@ tbody tr>td:nth-child(2) {
 	text-decoration: none;
 	color: black;
 }
-.table:hover>tr>td>a{
+
+.table:hover>tr>td>a {
 	background-color: white;
 }
-.pageNavi{
+
+.pageNavi {
 	color: black;
+}
+
+<
+style>.page-link {
+	color: #999;
+	background-color: #000;
+	border-color: #444;
+}
+
+.page-item.active .page-link {
+	z-index: 1;
+	color: #ccc;
+	font-weight: bold;
+	background-color: #333;
+	border-color: #444;
+}
+
+.page-link:focus, .page-link:hover {
+	color: #ccc;
+	background-color: #222;
+	border-color: #444;
+}
+
+.top-wrap{
+    width: 1280px;
+    margin: 0 auto;
+}
+
+.top-wrap>div>a{
+    display: block;
+    width: 100px;
+    line-height: 30px;
+    height: 30px;
+    text-decoration: none;
+    color: black;
+    border: 1px solid black;
+    border-radius: 30px;
+    font-weight: 600;
+    text-align: center;
+    float: right;
+}
+.top-wrap>div>a:hover{
+    background-color: #5865f5;
+    color: white;
 }
 </style>
 </head>
@@ -106,16 +160,21 @@ tbody tr>td:nth-child(2) {
 	<div class="notice_wrap">
 		<nav class="page-navi">
 			<ul>
-				<li><a href="#"> <span>공지사항</span>
+				<li><a href="#"> <span class="tablink">공지사항</span>
 				</a></li>
-				<li><a href="#"> <span>구매후기</span>
+				<li><a href="#"> <span class="tablink">구매후기</span>
 				</a></li>
-				<li><a href="#"> <span>자유게시판</span>
+				<li><a href="#"> <span class="tablink">자유게시판</span>
 				</a></li>
-				<li><a href="#"> <span>사진전</span>
+				<li><a href="#"> <span class="tablink">사진전</span>
 				</a></li>
 			</ul>
 		</nav>
+		
+		<div class="top-wrap">
+            <div><a href="/noticeWriteFrm.do">글쓰기</a></div>
+        </div>
+		
 		<div class="table_wrap">
 			<table class="table table-hover table-group-divider">
 				<thead class="table-secondary">
@@ -134,7 +193,7 @@ tbody tr>td:nth-child(2) {
 					<tr>
 						<th scope="row"><%=n.getNoticeTitle()%></th>
 						<td><a href="#"><%=n.getNoticeTitle()%></a></td>
-						<td><%=n.getNoticeWriter()%></td>
+						<td>안사니스토어</td>
 						<td><%=n.getNoticeDate()%></td>
 						<td><%=n.getNoticeReadCount()%></td>
 					</tr>
@@ -146,6 +205,20 @@ tbody tr>td:nth-child(2) {
 			<div class="pageNavi"><%=pageNavi%></div>
 		</div>
 	</div>
+	<script>
+	$(".tablink:eq(0)").addClass("active");
+
+	$(".tablink").on("click",function(){
+	    const selectedIndex = $(".tablink").index(this);
+	    $(".tablink").each(function (index,item){
+	        if(index != selectedIndex){
+	            $(item).removeClass("active");
+	        }else{
+	            $(item).addClass("active");
+	        }
+	    });    
+	});
+	</script>
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
 </html>
