@@ -12,27 +12,26 @@ public class MemberService {
 
 	public MemberService() {
 		super();
-		dao= new MemberDao();
+		dao = new MemberDao();
 	}
 
 	public Member selectOneMember(Member member) {
 		Connection conn = JDBCTemplate.getConnection();
-		Member m = dao.selectOneMember(conn,member);
+		Member m = dao.selectOneMember(conn, member);
 		JDBCTemplate.close(conn);
 		return m;
 	}
 
 	public int insertMember(Member m) {
 		Connection conn = JDBCTemplate.getConnection();
-		int result = dao.insertMember(conn,m);
-		if(result>0) {
+		int result = dao.insertMember(conn, m);
+		if (result > 0) {
 			JDBCTemplate.commit(conn);
-		}else {
+		} else {
 			JDBCTemplate.rollback(conn);
 		}
 		JDBCTemplate.close(conn);
 		return result;
 	}
-	
-	
+
 }

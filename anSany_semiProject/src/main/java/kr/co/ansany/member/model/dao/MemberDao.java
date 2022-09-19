@@ -16,11 +16,11 @@ public class MemberDao {
 		Member m = null;
 		String query = "select * from member_tbl where member_id=? and member_pw=?";
 		try {
-			pstmt =conn.prepareStatement(query);
+			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, member.getMemberId());
 			pstmt.setString(2, member.getMemberPw());
-			rset=pstmt.executeQuery();
-			if(rset.next()) {
+			rset = pstmt.executeQuery();
+			if (rset.next()) {
 				m = new Member();
 				m.setMemberNo(rset.getInt("member_no"));
 				m.setMemberId(rset.getString("member_id"));
@@ -36,7 +36,7 @@ public class MemberDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
+		} finally {
 			JDBCTemplate.close(pstmt);
 			JDBCTemplate.close(rset);
 		}
@@ -46,7 +46,7 @@ public class MemberDao {
 	public int insertMember(Connection conn, Member m) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		
+
 		String query = "insert into member_tbl values(member_seq.nextval,?,?,?,?,?,?,?,to_char(sysdate,'yyyy-mm-dd'),3)";
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -57,12 +57,12 @@ public class MemberDao {
 			pstmt.setString(5, m.getMemberPhone());
 			pstmt.setString(6, m.getMemberAddr());
 			pstmt.setString(7, m.getMemberEmail());
-			
+
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
+		} finally {
 			JDBCTemplate.close(pstmt);
 		}
 		return result;

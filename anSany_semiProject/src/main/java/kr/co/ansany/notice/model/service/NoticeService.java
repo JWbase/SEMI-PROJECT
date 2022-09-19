@@ -69,7 +69,27 @@ public class NoticeService {
 	public int insertNotice(Notice n) {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = dao.insertNotice(conn, n);
-		return 0;
+		if (result > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
 	}
 
+	public Notice selectOneNotice(int noticeNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.updateReadCount(conn, noticeNo);
+		if (result > 0) {
+			JDBCTemplate.commit(conn);
+			Notice n = dao.selectOneNotice(conn, noticeNo);
+			JDBCTemplate.close(conn);
+			return n;
+		} else {
+			JDBCTemplate.rollback(conn);
+			JDBCTemplate.close(conn);
+			return null;
+		}
+	}
 }

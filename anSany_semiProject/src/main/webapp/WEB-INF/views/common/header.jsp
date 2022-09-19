@@ -16,7 +16,7 @@
 		<div class="header-wrap">
 			<div class="header-top">
 				<div class="header-logo">
-					<a href="#"><img src="/img/logo2.png" alt=""></a>
+					<a href="/index.jsp"><img src="/img/logo2.png" alt=""></a>
 				</div>
 				<div class="header-navi">
 					<ul>

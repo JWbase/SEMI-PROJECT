@@ -68,11 +68,12 @@ tbody tr>td:nth-child(2) {
 	border-bottom: 2px solid transparent;
 }
 
-.tablink:hover{
-    color: #ea0029;
+.tablink:hover {
+	color: #ea0029;
 }
-.tablink.active{
-    color: #ea0029;
+
+.tablink.active {
+	color: #ea0029;
 }
 
 .table_wrap {
@@ -84,11 +85,10 @@ tbody tr>td:nth-child(2) {
 .pagination {
 	justify-content: center;
 	align-items: center;
-	
 }
 
-.pagination a{
-	color : black;
+.pagination a {
+	color: black;
 }
 
 .table {
@@ -131,27 +131,28 @@ style>.page-link {
 	border-color: #444;
 }
 
-.top-wrap{
-    width: 1280px;
-    margin: 0 auto;
+.top-wrap {
+	width: 1280px;
+	margin: 0 auto;
 }
 
-.top-wrap>div>a{
-    display: block;
-    width: 100px;
-    line-height: 30px;
-    height: 30px;
-    text-decoration: none;
-    color: black;
-    border: 1px solid black;
-    border-radius: 30px;
-    font-weight: 600;
-    text-align: center;
-    float: right;
+.top-wrap>div>a {
+	display: block;
+	width: 100px;
+	line-height: 30px;
+	height: 30px;
+	text-decoration: none;
+	color: black;
+	border: 1px solid black;
+	border-radius: 30px;
+	font-weight: 600;
+	text-align: center;
+	float: right;
 }
-.top-wrap>div>a:hover{
-    background-color: #5865f5;
-    color: white;
+
+.top-wrap>div>a:hover {
+	background-color: #5865f5;
+	color: white;
 }
 </style>
 </head>
@@ -170,11 +171,17 @@ style>.page-link {
 				</a></li>
 			</ul>
 		</nav>
-		
+		<%
+		if (m != null && m.getMemberLevel() == 1) {
+		%>
 		<div class="top-wrap">
-            <div><a href="/noticeWriteFrm.do">글쓰기</a></div>
-        </div>
-		
+			<div>
+				<a href="/noticeWriteFrm.do">글쓰기</a>
+			</div>
+		</div>
+		<%
+		}
+		%>
 		<div class="table_wrap">
 			<table class="table table-hover table-group-divider">
 				<thead class="table-secondary">
@@ -191,8 +198,8 @@ style>.page-link {
 				%>
 				<tbody class="table">
 					<tr>
-						<th scope="row"><%=n.getNoticeTitle()%></th>
-						<td><a href="#"><%=n.getNoticeTitle()%></a></td>
+						<th scope="row"><%=n.getNoticeNo()%></th>
+						<td><a href="/noticeView.do?noticeNo=<%=n.getNoticeNo()%>"><%=n.getNoticeTitle()%></a></td>
 						<td>안사니스토어</td>
 						<td><%=n.getNoticeDate()%></td>
 						<td><%=n.getNoticeReadCount()%></td>
@@ -206,18 +213,18 @@ style>.page-link {
 		</div>
 	</div>
 	<script>
-	$(".tablink:eq(0)").addClass("active");
+		$(".tablink:eq(0)").addClass("active");
 
-	$(".tablink").on("click",function(){
-	    const selectedIndex = $(".tablink").index(this);
-	    $(".tablink").each(function (index,item){
-	        if(index != selectedIndex){
-	            $(item).removeClass("active");
-	        }else{
-	            $(item).addClass("active");
-	        }
-	    });    
-	});
+		$(".tablink").on("click", function() {
+			const selectedIndex = $(".tablink").index(this);
+			$(".tablink").each(function(index, item) {
+				if (index != selectedIndex) {
+					$(item).removeClass("active");
+				} else {
+					$(item).addClass("active");
+				}
+			});
+		});
 	</script>
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
