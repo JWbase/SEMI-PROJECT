@@ -18,11 +18,7 @@ String pageNavi = (String) request.getAttribute("pageNavi");
 	margin-bottom: 14px;
 }
 
-.header-logo>a>img {
-	
-}
-
-.notice_wrap {
+.board_wrap {
 	width: 100%;
 	max-width: 1920px;
 	margin: auto;
@@ -167,7 +163,7 @@ style>.page-link {
 </head>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp"%>\
-	<div class="notice_wrap">
+	<div class="board_wrap">
 		<nav class="page-navi">
 			<ul>
 				<li><a href="/noticeList.do?reqPage=1"> <span class="tablink">공지사항</span>
@@ -176,7 +172,7 @@ style>.page-link {
 				</a></li>
 				<li><a href="#"> <span class="tablink">자유게시판</span>
 				</a></li>
-				<li><a href="#"> <span class="tablink">사진전</span>
+				<li><a href="/photoList.do"> <span class="tablink">사진전</span>
 				</a></li>
 			</ul>
 		</nav>

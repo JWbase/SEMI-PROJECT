@@ -31,7 +31,7 @@ Member m = (Member) session.getAttribute("m");
 							<ul>
 								<li><a href="/noticeList.do?reqPage=1">공지사항</a></li>
 								<li><a href="#">구매후기</a></li>
-								<li><a href="#">사진전</a></li>
+								<li><a href="/photoList.do">사진전</a></li>
 								<li><a href="#">자유게시판</a></li>
 							</ul></li>
 						<li><a href="#">멤버십</a>
