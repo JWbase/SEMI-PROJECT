@@ -10,19 +10,20 @@ body{
     margin: auto;
     width: 100%;
     max-width: 1920px;
-    height: 520px;
+    height: 100%;
     padding-top: 81px;
     display: block;
+    background-color: rgb(244, 244, 244);
 }
 .main-top>video{
     width: 100%;
 }
 .main-mid{
-    margin: auto;
+    margin: 0 auto;
     width: 100%;
     max-width: 1920px;
     height: 620px;
-    padding-top: 600px;
+    padding-top: 100px;
     background-color: rgb(244, 244, 244);
 }
 .main-mid-title{
@@ -106,7 +107,7 @@ body{
     color: black;
 }
 .main-bot{
-    margin: auto;
+    margin: 0 auto;
     width: 100%;
     max-width: 1890px;
     padding: 15px;
@@ -120,13 +121,22 @@ body{
     font-family: ns-bold;
     margin: 50px;
 }
-.main-bot>a>div{
-    width: 623px;
-    height: 450px;
+.main-bot-list{
+    margin: 0;
+    padding: 0;
+}
+.main-bot-list>li{
+    width: calc((100%/3));
     float: left;
+    list-style-type: none;
+}
+.main-bot a{
+    text-decoration: none;
+}
+.main-bot a>div{
     background-repeat: no-repeat;
     background-position: center -30px;
-    background-size: 100%;
+    background-size: cover;
 }
 .main-bot p{
     margin: 0;
@@ -146,6 +156,7 @@ body{
 .main-bot-comment{
     padding-top: 320px;
     padding-left: 30px;
+    padding-bottom: 50px;
 }
 .main-bot-comment>span{
     color: black;
@@ -155,8 +166,8 @@ body{
 }
 .main-bot-comment>p{
     color: gray;
-    font-size: 24px;
-    font-size: 8px;
-    font-family: ns-bold;
+    font-weight: 700;
+    font-size: 10px;
+    font-family: ns-m;
     padding-top: 10px;
 }

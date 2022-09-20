@@ -21,7 +21,7 @@
 }
 
 .header-logo>a>img {
-	margin-top: 30px;
+	margin-top: 29.5px;
 }
 </style>
 </head>

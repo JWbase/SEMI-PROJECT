@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import common.JDBCTemplate;
 import kr.co.ansany.member.model.vo.Member;
+import kr.co.ansany.notice.model.vo.Notice;
 
 public class MemberDao {
 

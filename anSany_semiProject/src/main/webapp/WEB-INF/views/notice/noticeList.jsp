@@ -14,6 +14,14 @@ String pageNavi = (String) request.getAttribute("pageNavi");
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/bootstrap.css" />
 <style>
+.header-logo>a>img {
+	margin-bottom: 14px;
+}
+
+.header-logo>a>img {
+	
+}
+
 .notice_wrap {
 	width: 100%;
 	max-width: 1920px;
@@ -153,6 +161,7 @@ style>.page-link {
 .top-wrap>div>a:hover {
 	background-color: #5865f5;
 	color: white;
+	border: 0;
 }
 </style>
 </head>

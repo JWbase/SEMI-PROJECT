@@ -44,13 +44,13 @@ public class NoticeWriteServlet extends HttpServlet {
 				new DefaultFileRenamePolicy());
 
 		String noticeTitle = mRequest.getParameter("noticeTitle");
+		String noticeWriter = mRequest.getParameter("noticeWriter");
 		String noticeContent = mRequest.getParameter("noticeContent");
-
 		String filename = mRequest.getOriginalFileName("upfile");
 		String filepath = mRequest.getFilesystemName("upfile");
 		Notice n = new Notice();
 		n.setNoticeTitle(noticeTitle);
-		n.setNoticeContent(noticeContent);
+		n.setNoticeWriter(noticeWriter);
 		n.setNoticeContent(noticeContent);
 		n.setNoticeFilename(filename);
 		n.setNoticeFilepath(filepath);

@@ -7,6 +7,14 @@
 <title>공지사항</title>
 <link rel="stylesheet" href="/css/bootstrap.css" />
 <style>
+.header-logo>a>img {
+	margin-bottom: 14px;
+}
+
+p {
+	margin: 0;
+}
+
 .page-content {
 	padding-top: 81px;
 }
@@ -23,7 +31,6 @@
 .page-content {
 	width: 1280px;
 	margin: 0 auto;
-	width: 1280px;
 }
 
 .input-form {
@@ -35,17 +42,17 @@
 	box-sizing: border-box;
 }
 
-textarea.input-form {
-	resize: none;
-	min-height: 400px;
-}
-
 .btn-submit {
 	width: 15%;
 	height: 40px;
 	background-color: #000;
 	color: #fff;
 	font-size: 1.2em;
+}
+
+.btn-submit:hover {
+	background-color: #5865f5;
+	border: 0;
 }
 
 .page-title {
@@ -66,11 +73,6 @@ textarea.input-form {
 	height: 46px;
 	padding-left: 10px;
 }
-
-.textarea-td {
-	text-align: left;
-	padding: 0;
-}
 </style>
 </head>
 <body>
@@ -88,7 +90,7 @@ textarea.input-form {
 					<tr class="table table-dark">
 						<th class="th-1">제목</th>
 						<td class="td-1" style="padding: 0;"><input type="text"
-							name="noticeTitle" class="td-3"></td>
+							name="noticeTitle" class="td-3" style="outline-style: none;"></td>
 						<th class="th-1">첨부파일</th>
 						<td style="text-align: left;"><input type="file"
 							name="upfile" class="td-2"> <input type="hidden"

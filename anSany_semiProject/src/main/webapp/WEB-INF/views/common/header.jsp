@@ -1,9 +1,9 @@
 <%@page import="kr.co.ansany.member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	    <%
-    	Member m = (Member)session.getAttribute("m");
-    %>
+<%
+Member m = (Member) session.getAttribute("m");
+%>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 <!-- jquery -->
