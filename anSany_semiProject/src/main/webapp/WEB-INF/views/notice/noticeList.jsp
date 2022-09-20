@@ -161,7 +161,7 @@ style>.page-link {
 .top-wrap>div>a:hover {
 	background-color: #5865f5;
 	color: white;
-	border: 0;
+	border-color: #5865f5;
 }
 </style>
 </head>
@@ -170,7 +170,7 @@ style>.page-link {
 	<div class="notice_wrap">
 		<nav class="page-navi">
 			<ul>
-				<li><a href="#"> <span class="tablink">공지사항</span>
+				<li><a href="/noticeList.do?reqPage=1"> <span class="tablink">공지사항</span>
 				</a></li>
 				<li><a href="#"> <span class="tablink">구매후기</span>
 				</a></li>

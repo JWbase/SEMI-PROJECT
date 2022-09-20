@@ -28,7 +28,8 @@ p {
 }
 
 .page-wrap {
-	padding-bottom: 50px;
+	padding-top: 50px;
+	padding-bottom: 100px;
 	background-color: #fff;
 }
 
@@ -80,18 +81,19 @@ p {
 	background-color: #000;
 	color: #fff;
 	margin-left: 10px;
+	padding: 0;
 }
 
 .wrap-bottom>div>button:hover {
 	background-color: #5865f5;
 	color: white;
-	border: 0;
+	border-color: #5865f5;
 }
 
 .wrap-bottom>div>a:hover {
 	background-color: #000;
 	color: #fff;
-	border: 0;
+	border-color: #fff;
 }
 </style>
 </head>
@@ -133,7 +135,7 @@ p {
 				</tr>
 			</table>
 			<%
-			if (m != null && n.getNoticeWriter().equals(m.getMemberId())) {
+			if ((m != null && n.getNoticeWriter().equals(m.getMemberId())) || m != null && m.getMemberLevel() == 1) {
 			%>
 			<div class="wrap-bottom">
 				<div>
