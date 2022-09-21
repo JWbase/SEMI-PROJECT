@@ -1,14 +1,14 @@
-<%@page import="kr.co.ansany.notice.model.vo.Notice"%>
+<%@page import="kr.co.ansany.photo.model.vo.Photo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-Notice n = (Notice) request.getAttribute("n");
+Photo p = (Photo) request.getAttribute("p");
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지사항</title>
+<title>Insert title here</title>
 <link rel="stylesheet" href="/css/bootstrap.css" />
 <style>
 .header-logo>a>img {
@@ -53,14 +53,19 @@ p {
 	font-size: 1.5rem;
 }
 
-#noticeContent {
+#photoContent {
 	min-height: 300px;
-	text-align: left;
-	padding-left: 10px;
+	text-align: center;
+	padding-top: 20px;
+}
+
+#photoContent>img {
+	max-height: 500px;
+	max-width: 500px;
 }
 
 .wrap-bottom {
-	width: 960x;
+	width: 960px;
 	margin: 0 auto;
 }
 
@@ -97,6 +102,10 @@ p {
 	border-color: #fff;
 }
 
+th {
+	vertical-align: middle;
+}
+
 .td-title {
 	width: 300px
 }
@@ -106,45 +115,45 @@ p {
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
 	<div class="page-wrap">
 		<div class="page-content">
-			<div class="page-title">공지사항</div>
+			<div class="page-title">사진전</div>
 
-			<table class="table table-group-divider" id="noticeView">
+			<table class="table table-group-divider" id="photoView">
 				<tr class="table-secondary">
 					<th>제목</th>
-					<td colspan="3" class="td-title"><%=n.getNoticeTitle()%></td>
+					<td colspan="3" class="td-title"><%=p.getPhotoTitle()%></td>
 					<th>작성자</th>
-					<td>안사니스토어</td>
+					<td><%=p.getPhotoWriter()%></td>
 					<th>조회수</th>
-					<td><%=n.getNoticeReadCount()%></td>
+					<td><%=p.getPhotoReadCount()%></td>
 					<th>작성일</th>
-					<td><%=n.getNoticeDate()%></td>
+					<td><%=p.getPhotoDate()%></td>
 				</tr>
 				<tr>
-					<th>첨부파일</th>
+					<th style="line-height: 300px;">내용</th>
 					<td colspan="9">
-						<%
-						if (n.getNoticeFilename() != null) {
-						%> <img src="/img/file.png" width="16px"> <a
-						href="/noticeFileDown.do?noticeNo=<%=n.getNoticeNo()%>"><%=n.getNoticeFilename()%></a>
-						<%
-						}
-						%>
-					</td>
-				</tr>
-				<tr>
-					<th>내용</th>
-					<td colspan="9">
-						<div id="noticeContent"><%=n.getNoticeContentBr()%></div>
+						<div id="photoContent">
+							<img src="/upload/photo/<%=p.getPhotoFilePath()%>"> <br>
+							<br>
+							<%=p.getPhotoContent()%>
+						</div>
 					</td>
 				</tr>
 			</table>
 			<%
-			if ((m != null && n.getNoticeWriter().equals(m.getMemberId())) || m != null && m.getMemberLevel() == 1) {
+			if (m != null && p.getPhotoWriter().equals(m.getMemberId())) {
 			%>
 			<div class="wrap-bottom">
 				<div>
-					<button onclick="noticeDelete(<%=n.getNoticeNo()%>);">삭제</button>
-					<a href="/noticeUpdateFrm.do?noticeNo=<%=n.getNoticeNo()%>">수정</a>
+					<button onclick="photoDelete(<%=p.getPhotoNo()%>);">삭제</button>
+					<a href="/photoUpdateFrm.do?photoNo=<%=p.getPhotoNo()%>">수정</a>
+				</div>
+			</div>
+			<%
+			} else if (m != null && m.getMemberLevel() == 1) {
+			%>
+			<div class="wrap-bottom">
+				<div>
+					<button onclick="photoDelete(<%=p.getPhotoNo()%>);">삭제</button>
 				</div>
 			</div>
 			<%
@@ -153,9 +162,9 @@ p {
 		</div>
 	</div>
 	<script>
-		function noticeDelete(noticeNo){
+		function photoDelete(photoNo){
 			if(confirm("삭제하시겠습니까?")) {
-				location.href="/noticeDelete.do?noticeNo="+noticeNo;
+				location.href="/photoDelete.do?photoNo="+photoNo;
 			}
 		}
 	</script>

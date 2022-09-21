@@ -1,4 +1,4 @@
-package kr.co.ansany.notice.controller;
+package kr.co.ansany.photo.controller;
 
 import java.io.IOException;
 
@@ -9,20 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.co.ansany.notice.model.service.NoticeService;
-import kr.co.ansany.notice.model.vo.Notice;
+import kr.co.ansany.photo.model.service.PhotoService;
+import kr.co.ansany.photo.model.vo.Photo;
 
 /**
- * Servlet implementation class NoticeViewServlet
+ * Servlet implementation class PhotoViewServlet
  */
-@WebServlet(name = "NoticeView", urlPatterns = { "/noticeView.do" })
-public class NoticeViewServlet extends HttpServlet {
+@WebServlet(name = "PhotoView", urlPatterns = { "/photoView.do" })
+public class PhotoViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public NoticeViewServlet() {
+	public PhotoViewServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -35,22 +35,22 @@ public class NoticeViewServlet extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 
-		int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
+		int PhotoNo = Integer.parseInt(request.getParameter("photoNo"));
+		PhotoService service = new PhotoService();
+		Photo p = service.selectOnePhoto(PhotoNo);
 
-		NoticeService service = new NoticeService();
-		Notice n = service.selectOneNotice(noticeNo);
-
-		if (n == null) {
+		if (p == null) {
 			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
 			request.setAttribute("title", "조회실패");
 			request.setAttribute("msg", "게시글이 존재하지 않습니다.");
 			request.setAttribute("icon", "info");
-			request.setAttribute("loc", "/noticeList.do?reqPage=1");
+			request.setAttribute("title", "/photoList.do");
 		} else {
-			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/notice/noticeView.jsp");
-			request.setAttribute("n", n);
+			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/photo/photoView.jsp");
+			request.setAttribute("p", p);
 			view.forward(request, response);
 		}
+
 	}
 
 	/**

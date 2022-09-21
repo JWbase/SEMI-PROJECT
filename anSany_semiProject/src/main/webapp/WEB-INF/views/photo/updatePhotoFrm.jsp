@@ -1,10 +1,15 @@
+<%@page import="kr.co.ansany.photo.model.vo.Photo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+<%
+Photo p = (Photo) request.getAttribute("p");
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>사진전</title>
+<title>사진전 수정</title>
 <link rel="stylesheet" href="/css/bootstrap.css" />
 <style>
 .header-logo>a>img {
@@ -65,7 +70,7 @@ p {
 	border-collapse: collapse;
 }
 
-th{
+th {
 	vertical-align: middle;
 }
 
@@ -83,7 +88,7 @@ textarea.input-form {
 </style>
 </head>
 <body>
-	<%@include file="/WEB-INF/views/common/header.jsp"%>
+<%@include file="/WEB-INF/views/common/header.jsp"%>
 	<div class="page-wrap">
 		<div class="page-content">
 			<div class="page-title">사진전</div>
@@ -126,19 +131,6 @@ textarea.input-form {
 			</form>
 		</div>
 	</div>
-	<script>
-		function loadImg(f) {
-			if (f.files.length != 0 && f.files[0] != 0) {
-				const reader = new FileReader();
-				reader.readAsDataURL(f.files[0]);
-				reader.onload = function(e) {
-					$("#img-view").attr("src", e.target.result);
-				}
-			} else {
-				$("#img-view").attr("src", "");
-			}
-		}
-	</script>
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
 </html>

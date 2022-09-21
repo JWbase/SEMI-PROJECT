@@ -79,6 +79,8 @@ tbody tr>td:nth-child(2) {
 .top-wrap {
 	width: 1280px;
 	margin: 0 auto;
+	overflow: hidden;
+	margin-bottom: 30px;
 }
 
 .top-wrap>div>a {
@@ -89,16 +91,68 @@ tbody tr>td:nth-child(2) {
 	text-decoration: none;
 	color: black;
 	border: 1px solid black;
+	margin-right: 20px;
 	border-radius: 30px;
 	font-weight: 600;
 	text-align: center;
 	float: right;
+	border-radius: 30px
 }
 
 .top-wrap>div>a:hover {
 	background-color: #5865f5;
 	color: white;
 	border-color: #5865f5;
+}
+
+.posting-wrap {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.posting-wrap .posting-item {
+	box-sizing: border-box;
+	width: calc(100%/ 4);
+	padding: 20px;
+}
+
+.posting-wrap .posting-item .posting-img img {
+	width: 100%;
+	height: 200px;
+}
+
+.posting-wrap .posting-item .posting-content {
+	width: 80%;
+	margin: 0 auto;
+}
+
+.posting-wrap .posting-item:hover {
+	box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.img-content-wrap {
+	width: 1280px;
+	margin: 0 auto;
+}
+
+#more-btn {
+	border: none;
+	margin-top: 40px;
+	display: inline-block;
+	box-sizing: border-box;
+	transition-duration: 0.5s;
+	width: 100%;
+	padding: 2rem;
+	font-size: 1.2em;
+	color: #000;
+	background-color: #fff;
+	display: inline-block;
+	border: 2px solid #000;
+}
+
+#more-btn:hover {
+	background-color: #000;
+	color: #fff;
 }
 </style>
 </head>
@@ -114,8 +168,7 @@ tbody tr>td:nth-child(2) {
 				</a></li>
 				<li><a href="#"> <span class="tablink">자유게시판</span>
 				</a></li>
-				<li><a href="/photoList.do"> <span class="tablink">사진전
-							<%=totalCount%></span>
+				<li><a href="/photoList.do"> <span class="tablink">사진전</span>
 				</a></li>
 			</ul>
 		</nav>
@@ -130,10 +183,11 @@ tbody tr>td:nth-child(2) {
 		<%
 		}
 		%>
-		<div class="photoWrapper posting-wrap"></div>
-		<button class="btn" id="more-btn" totalCount="<%=totalCount%>"
-			currentCount="0" value="1">더보기</button>
-			
+		<div class="img-content-wrap">
+			<div class="photoWrapper posting-wrap"></div>
+			<button class="btn" id="more-btn" totalCount="<%=totalCount%>"
+				currentCount="0" value="1">더보기</button>
+		</div>
 	</div>
 	<script>
 		$(".tablink:eq(3)").addClass("active");
@@ -148,11 +202,67 @@ tbody tr>td:nth-child(2) {
 				}
 			});
 		});
-		
-		$("#more-btn").on("click",function(){
-			const amount = 5;
-			const start = $(this).val();
-		});
+
+		$("#more-btn").on(
+				"click",
+				function() {
+					const amount = 4;
+					const start = $(this).val();
+					$.ajax({
+						url : "photoMore.do",
+						type : "post",
+						data : {
+							start : start,
+							amount : amount
+						},
+						success : function(data) {
+							for (let i = 0; i < data.length; i++) {
+								const p = data[i];
+								const div = $("<div>");
+								div.addClass("posting-item");
+
+								const imgDiv = $("<div>");
+								imgDiv.addClass("posting-img");
+
+								const imgTag = $("<a>");
+								imgTag.attr("href", "/photoView.do?photoNo="
+										+ p.photoNo);
+
+								const img = $("<img>");
+								img.attr("src", "/upload/photo/"
+										+ p.photoFilePath);
+								imgTag.append(img);
+								
+								imgDiv.append(imgTag);
+
+								const titleDiv = $("<div>");
+								titleDiv.addClass("posting-content");
+								const title = $("<p>");
+								title.append(p.photoTitle);
+
+								titleDiv.append(title);
+
+								div.append(imgDiv).append(titleDiv);
+
+								$(".photoWrapper").append(div);
+							}
+							$("#more-btn").val(Number(start) + Number(amount));
+							const currentCount = Number($("#more-btn").attr(
+									"currentCount"))
+									+ data.length;
+							$("#more-btn").attr("currentCount", currentCount);
+							const totalCount = $("#more-btn")
+									.attr("totalCount");
+							if (totalCount == currentCount) {
+								$("#more-btn").remove();
+							}
+						},
+						error : function() {
+							console.log("error");
+						}
+					})
+				});
+		$("#more-btn").click();
 	</script>
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
