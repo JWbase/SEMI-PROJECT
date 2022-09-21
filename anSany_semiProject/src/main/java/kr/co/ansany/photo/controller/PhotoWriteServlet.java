@@ -49,11 +49,13 @@ public class PhotoWriteServlet extends HttpServlet {
 		String photoWriter = mRequest.getParameter("photoWriter");
 		String photoContent = mRequest.getParameter("photoContent");
 		String photoFilePath = mRequest.getFilesystemName("imgFile");
+		String photoFileName = mRequest.getOriginalFileName("imgFile");
 		Photo p = new Photo();
 		p.setPhotoTitle(photoTitle);
 		p.setPhotoWriter(photoWriter);
 		p.setPhotoContent(photoContent);
 		p.setPhotoFilePath(photoFilePath);
+		p.setPhotoFileName(photoFileName);
 
 		PhotoService service = new PhotoService();
 		int result = service.insertPhoto(p);

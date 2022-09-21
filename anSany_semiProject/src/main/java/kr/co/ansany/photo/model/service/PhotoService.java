@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import common.JDBCTemplate;
 import kr.co.ansany.photo.model.dao.PhotoDao;
 import kr.co.ansany.photo.model.vo.Photo;
+import kr.co.ansany.photo.model.vo.PhotoComment;
+import kr.co.ansany.photo.model.vo.PhotoViewData;
 
 public class PhotoService {
 	private PhotoDao dao;
@@ -42,14 +44,20 @@ public class PhotoService {
 		return result;
 	}
 
-	public Photo selectOnePhoto(int photoNo) {
+	public PhotoViewData selectOnePhoto(int photoNo) {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = dao.updateReadCount(conn, photoNo);
 		if (result > 0) {
 			JDBCTemplate.commit(conn);
 			Photo p = dao.selectOnePhoto(conn, photoNo);
+
+			ArrayList<PhotoComment> commentList = dao.selectPhotoCommentList(conn, photoNo); // 댓글
+
+			ArrayList<PhotoComment> reCommentList = dao.selectPhotoReCommentList(conn, photoNo); // 대댓글
+			
+			PhotoViewData pvd = new PhotoViewData(p, commentList, reCommentList);
 			JDBCTemplate.close(conn);
-			return p;
+			return pvd;
 		} else {
 			JDBCTemplate.rollback(conn);
 			JDBCTemplate.close(conn);
@@ -76,6 +84,30 @@ public class PhotoService {
 		Photo p = dao.selectOnePhoto(conn, photoNo);
 		JDBCTemplate.close(conn);
 		return p;
+	}
+
+	public int updatePhoto(Photo p) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.updatePhoto(conn, p);
+		if (result > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public int insertPhotoComment(PhotoComment pc) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.insertPhotoComment(conn, pc);
+		if (result > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
 	}
 
 }

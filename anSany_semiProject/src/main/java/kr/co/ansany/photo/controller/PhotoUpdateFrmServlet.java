@@ -34,7 +34,7 @@ public class PhotoUpdateFrmServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		int photoNo = Integer.parseInt(request.getParameter("PhotoNo"));
+		int photoNo = Integer.parseInt(request.getParameter("photoNo"));
 		PhotoService service = new PhotoService();
 		Photo p = service.getPhoto(photoNo);
 

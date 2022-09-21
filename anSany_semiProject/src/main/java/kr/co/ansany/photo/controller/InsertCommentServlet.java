@@ -10,20 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.co.ansany.photo.model.service.PhotoService;
-import kr.co.ansany.photo.model.vo.Photo;
-import kr.co.ansany.photo.model.vo.PhotoViewData;
+import kr.co.ansany.photo.model.vo.PhotoComment;
 
 /**
- * Servlet implementation class PhotoViewServlet
+ * Servlet implementation class InsertCommentServlet
  */
-@WebServlet(name = "PhotoView", urlPatterns = { "/photoView.do" })
-public class PhotoViewServlet extends HttpServlet {
+@WebServlet(name = "InsertComment", urlPatterns = { "/insertComment.do" })
+public class InsertCommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public PhotoViewServlet() {
+	public InsertCommentServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -36,24 +35,27 @@ public class PhotoViewServlet extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 
-		int PhotoNo = Integer.parseInt(request.getParameter("photoNo"));
+		PhotoComment pc = new PhotoComment();
+		pc.setpCommentWriter(request.getParameter("pCommentWriter"));
+		pc.setPhotoRef(Integer.parseInt(request.getParameter("photoRef")));
+		pc.setpCommentRef(Integer.parseInt(request.getParameter("pCommentRef")));
+		pc.setpCommentContent(request.getParameter("pCommentContent"));
+
 		PhotoService service = new PhotoService();
-		PhotoViewData pvd = service.selectOnePhoto(PhotoNo);
+		int result = service.insertPhotoComment(pc);
 
-		if (pvd == null) {
-			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
-			request.setAttribute("title", "조회실패");
-			request.setAttribute("msg", "게시글이 존재하지 않습니다.");
-			request.setAttribute("icon", "info");
-			request.setAttribute("title", "/photoList.do");
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+		if (result > 0) {
+			request.setAttribute("title", "성공");
+			request.setAttribute("msg", "댓글 작성 완료");
+			request.setAttribute("icon", "success");
 		} else {
-			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/photo/photoView.jsp");
-			request.setAttribute("p", pvd.getP());
-			request.setAttribute("commentList", pvd.getCommentList());
-			request.setAttribute("reCommentList", pvd.getReCommentList());
-			view.forward(request, response);
+			request.setAttribute("title", "실패");
+			request.setAttribute("msg", "댓글 작성 실패");
+			request.setAttribute("icon", "error");
 		}
-
+		request.setAttribute("loc", "/photoView.do?photoNo=" + pc.getPhotoRef());
+		view.forward(request, response);
 	}
 
 	/**

@@ -112,7 +112,7 @@ p {
 							value="<%=n.getNoticeFilename()%>"> <input type="hidden"
 							name="oldFilepath" value="<%=n.getNoticeFilepath()%>"> 
 							<%} else {
- %> <input type="file" name="upfile" class="td-2"> <%
+ %> <input type="file" name="upfile" class="td-2"></td> <%
  }
  %>
 						

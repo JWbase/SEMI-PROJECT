@@ -1,4 +1,4 @@
-package kr.co.ansany.notice.controller;
+package kr.co.ansany.photo.controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,27 +9,24 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.plaf.multi.MultiButtonUI;
-
-import org.apache.tomcat.util.http.fileupload.RequestContext;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import kr.co.ansany.notice.model.service.NoticeService;
-import kr.co.ansany.notice.model.vo.Notice;
+import kr.co.ansany.photo.model.service.PhotoService;
+import kr.co.ansany.photo.model.vo.Photo;
 
 /**
- * Servlet implementation class NoticeUpdateServlet
+ * Servlet implementation class PhotoUpdateServlet
  */
-@WebServlet(name = "NoticeUpdate", urlPatterns = { "/noticeUpdate.do" })
-public class NoticeUpdateServlet extends HttpServlet {
+@WebServlet(name = "PhotoUpdate", urlPatterns = { "/photoUpdate.do" })
+public class PhotoUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public NoticeUpdateServlet() {
+	public PhotoUpdateServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -42,45 +39,43 @@ public class NoticeUpdateServlet extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		String root = getServletContext().getRealPath("/");
-		String saveDirectory = root + "upload/notice";
+		String saveDirectory = root + "upload/photo";
 
 		int maxSize = 10 * 1024 * 1024;
 
-		MultipartRequest mRequest = new MultipartRequest(request, saveDirectory, maxSize, "UTF-8",
+		MultipartRequest mRquest = new MultipartRequest(request, saveDirectory, maxSize, "UTF-8",
 				new DefaultFileRenamePolicy());
 
-		int noticeNo = Integer.parseInt(mRequest.getParameter("noticeNo"));
-		String noticeTitle = mRequest.getParameter("noticeTitle");
-		String noticeContent = mRequest.getParameter("noticeContent");
-		String status = mRequest.getParameter("status");
-		String fileName = mRequest.getOriginalFileName("upfile");
-		String filePath = mRequest.getFilesystemName("upfile");
+		int photoNo = Integer.parseInt(mRquest.getParameter("photoNo"));
+		String photoTitle = mRquest.getParameter("photoTitle");
+		String photoContent = mRquest.getParameter("photoContent");
+		String status = mRquest.getParameter("status");
+		String fileName = mRquest.getOriginalFileName("upFile");
+		String filePath = mRquest.getFilesystemName("upFile");
+		String oldFilePath = mRquest.getParameter("oldFilePath");
+		String oldFileName = mRquest.getParameter("oldFileName");
 
-		String oldFilename = mRequest.getParameter("oldFilename");
-		String oldFilepath = mRequest.getParameter("oldFilepath");
-
-		if (oldFilename != null && status.equals("stay")) {
-			fileName = oldFilename;
-			filePath = oldFilepath;
+		if (oldFileName != null && status.equals("stay")) {
+			filePath = oldFilePath;
+			fileName = oldFileName;
 		}
+		Photo p = new Photo();
+		p.setPhotoNo(photoNo);
+		p.setPhotoTitle(photoTitle);
+		p.setPhotoContent(photoContent);
+		p.setPhotoFilePath(filePath);
+		p.setPhotoFileName(fileName);
 
-		Notice n = new Notice();
-		n.setNoticeNo(noticeNo);
-		n.setNoticeTitle(noticeTitle);
-		n.setNoticeContent(noticeContent);
-		n.setNoticeFilename(fileName);
-		n.setNoticeFilepath(filePath);
-
-		NoticeService service = new NoticeService();
-		int result = service.updateNotice(n);
+		PhotoService service = new PhotoService();
+		int result = service.updatePhoto(p);
 
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
 		if (result > 0) {
 			request.setAttribute("title", "변경완료");
-			request.setAttribute("msg", "공지사항 수정완료");
+			request.setAttribute("msg", "게시글 수정완료");
 			request.setAttribute("icon", "success");
 			if (status.equals("delete")) {
-				File delFile = new File(saveDirectory + "/" + oldFilepath);
+				File delFile = new File(saveDirectory + "/" + oldFilePath);
 				delFile.delete();
 			}
 		} else {
@@ -89,7 +84,7 @@ public class NoticeUpdateServlet extends HttpServlet {
 			request.setAttribute("icon", "error");
 
 		}
-		request.setAttribute("loc", "/noticeView.do?noticeNo=" + noticeNo);
+		request.setAttribute("loc", "/photoView.do?photoNo=" + photoNo);
 		view.forward(request, response);
 	}
 

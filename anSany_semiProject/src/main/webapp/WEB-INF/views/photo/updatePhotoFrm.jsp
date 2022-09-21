@@ -88,26 +88,42 @@ textarea.input-form {
 </style>
 </head>
 <body>
-<%@include file="/WEB-INF/views/common/header.jsp"%>
+	<%@include file="/WEB-INF/views/common/header.jsp"%>
 	<div class="page-wrap">
 		<div class="page-content">
 			<div class="page-title">사진전</div>
-			<form action="/photoWrite.do" method="post"
+			<form action="/photoUpdate.do" method="post"
 				enctype="multipart/form-data">
 				<table class="table table-bordered" id="photoWrite">
 					<tr class="">
 						<th class="th-1 table-active">제목</th>
 						<td colspan="3" class="td-1" style="padding: 0;"><input
 							type="text" name="photoTitle" class="td-3"
-							style="outline-style: none;"></td>
+							style="outline-style: none;" value="<%=p.getPhotoTitle()%>">
+							<input type="hidden" name="photoNo" value="<%=p.getPhotoNo()%>">
+							<input type="hidden" name="status" value="stay"></td>
+						</td>
 					</tr>
 					<tr>
-						<th class="th-1 table-active">작성자</th>
-						<td class="th-1"><%=m.getMemberId()%> <input type="hidden"
-							name="photoWriter" value="<%=m.getMemberId()%>"></td>
 						<th class="th-1 table-active">사진</th>
-						<td><input type="file" name="imgFile"
-							accept=".jpg,.png,.jpeg" onchange="loadImg(this);"></td>
+						<td colspan="3">
+							<%
+							if (p.getPhotoFilePath() != null) {
+							%> <img src="/img/file.png" width="16px" class="delFile"> <span
+							class="delFile"><%=p.getPhotoFileName()%></span>
+							<button type="button" class="delFile">삭제</button> <input
+							type="file" name="upFile" accept=".jpg,.png,.jpeg"
+							onchange="loadImg(this);" style="display: none;"> <input
+							type="hidden" name="oldFileName" value="<%=p.getPhotoFileName()%>">
+							<input
+							type="hidden" name="oldFilePath" value="<%=p.getPhotoFilePath()%>">  
+							<%} else {
+ %> <input type="file" name="upFile" accept=".jpg,.png,.jpeg"
+							onchange="loadImg(this);">
+						</td>
+						<%
+						}
+						%>
 					</tr>
 					<tr>
 						<th class="table-active">사진 미리보기</th>
@@ -120,17 +136,24 @@ textarea.input-form {
 					<tr>
 						<th class="th-1 table-active" style="line-height: 272.4px;">내용</th>
 						<td colspan="3" style="text-align: left; padding: 0;"><textarea
-								id="photoContent" name="photoContent" class="input-form"></textarea></td>
+								id="photoContent" name="photoContent" class="input-form"><%=p.getPhotoContent()%></textarea></td>
 					</tr>
 					<tr>
 						<td colspan="4">
-							<button type="submit" class="btn-submit">작성하기</button>
+							<button type="submit" class="btn-submit">수정하기</button>
 						</td>
 					</tr>
 				</table>
 			</form>
 		</div>
 	</div>
+	<script>
+		$("button.delFile").on("click", function() {
+			$(".delFile").hide();
+			$(this).next().show();
+			$("[name=status]").val("delete");
+		});
+	</script>
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
 </html>

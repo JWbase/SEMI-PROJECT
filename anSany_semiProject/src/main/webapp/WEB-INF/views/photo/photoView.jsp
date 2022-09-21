@@ -1,14 +1,18 @@
+<%@page import="kr.co.ansany.photo.model.vo.PhotoComment"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="kr.co.ansany.photo.model.vo.Photo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
 Photo p = (Photo) request.getAttribute("p");
+ArrayList<PhotoComment> commentList = (ArrayList<PhotoComment>) request.getAttribute("commentList");
+ArrayList<PhotoComment> reCommentList = (ArrayList<PhotoComment>) request.getAttribute("reCommentList");
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>사진전 상세보기</title>
 <link rel="stylesheet" href="/css/bootstrap.css" />
 <style>
 .header-logo>a>img {
@@ -109,6 +113,148 @@ th {
 .td-title {
 	width: 300px
 }
+
+.inputCommentBox>form>ul {
+	list-style-type: none;
+	display: flex;
+}
+
+.inputCommentBox>form>ul>li:first-child {
+	width: 15%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.inputCommentBox>form>ul>li:first-child>span {
+	font-size: 80px;
+	color: #ccc;
+}
+
+.inputCommentBox>form>ul>li:nth-child(2) {
+	width: 75%
+}
+
+.inputCommentBox>form>ul>li:nth-child(2)>textarea.input-form {
+	height: 96px;
+	min-height: 96px;
+	resize: none;
+}
+
+.inputCommentBox>form>ul>li:last-child {
+	width: 10%
+}
+
+.inputRecommentBox {
+	margin: 30px 0px;
+	display: none;
+}
+
+.inputRecommentBox>form>ul {
+	list-style-type: none;
+	display: flex;
+}
+
+.inputRecommentBox>form>ul>li:first-child {
+	width: 15%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.inputRecommentBox>form>ul>li:first-child>span {
+	font-size: 50px;
+	color: #ccc;
+}
+
+.inputRecommentBox>form>ul>li:nth-last-child(2) {
+	width: 75%;
+}
+
+.inputRecommentBox>form>ul>li:nth-last-child(2)>textarea.input-form {
+	height: 96px;
+	min-height: 96px;
+}
+
+.inputRecommentBox>form>ul>li:last-child {
+	width: 10%;
+}
+
+/* 댓글관련 css */
+.posting-comment {
+	display: flex;
+	border-top: 2px solid #ccc;
+	list-style-type: none;
+}
+
+.posting-comment>li {
+	box-sizing: border-box;
+}
+
+.posting-comment>li:first-child {
+	width: 15%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100px;
+	border-right: 1px solid #ccc;
+}
+
+.posting-comment.reply>li:first-child {
+	width: 20%;
+}
+
+.posting-comment>li:first-child .material-icons {
+	font-size: 80px;
+	color: #ccc;
+}
+
+.posting-comment.reply>li:first-child .material-icons:first-child {
+	font-size: 40px;
+	color: #ccc;
+}
+
+.posting-comment.reply>li:last-child {
+	display: flex;
+	flex-direction: column;
+	width: 80%;
+}
+
+.posting-comment>li:last-child {
+	display: flex;
+	flex-direction: column;
+	width: 85%;
+}
+
+.posting-comment>li:last-child>p {
+	width: 100%;
+	padding: 5px;
+	box-sizing: border-box;
+}
+
+.posting-comment>li:last-child>.comment-info>span {
+	padding: 0px 10px;
+}
+
+.posting-comment>li:last-child>.comment-info>span:not(:last-child) {
+	border-right: 2px solid #ccc;
+}
+
+.posting-comment>li:last-child>.comment-content {
+	padding: 0px 15px;
+}
+
+.posting-comment>li:last-child>.comment-link {
+	text-align: right;
+}
+
+.posting-comment>li:last-child>.comment-link>a {
+	margin: 0px 5px;
+}
+
+.posting-comment>li:last-child>.comment-link>a:hover {
+	text-decoration: underline;
+}
 </style>
 </head>
 <body>
@@ -134,11 +280,117 @@ th {
 						<div id="photoContent">
 							<img src="/upload/photo/<%=p.getPhotoFilePath()%>"> <br>
 							<br>
-							<%=p.getPhotoContent()%>
+							<%=p.getPhotoContentBr()%>
 						</div>
 					</td>
 				</tr>
 			</table>
+			<%
+			if (m != null) {
+			%>
+			<div class="inputCommentBox">
+				<form action="/insertComment.do" method="post">
+					<ul>
+						<li><span class="material-icons">account_box</span></li>
+						<li><input type="hidden" name="pCommentWriter"
+							value="<%=m.getMemberId()%>"> <input type="hidden"
+							name="photoRef" value="<%=p.getPhotoNo()%>"> <input
+							type="hidden" name="pCommentRef" value="0"> <textarea
+								class="input-form" name="pCommentContent"></textarea></li>
+						<li>
+							<button type="submit" class="btn-submit">등록</button>
+						</li>
+					</ul>
+				</form>
+			</div>
+			<%
+			}
+			%>
+
+			<div class="commentBox">
+				<%
+				for (PhotoComment pc : commentList) {
+				%>
+				<ul class="posting-comment">
+					<li><span class="material-icons">account_box</span></li>
+					<li>
+						<p class="comment-info">
+							<span><%=pc.getpCommentWriter()%></span> <span><%=pc.getpCommentDate()%></span>
+						</p>
+						<p class="comment-content"><%=pc.getpCommentContentBr()%>
+							<textarea name="ncContent" class="input-form"
+								style="min-height: 96px; display: none;"><%=pc.getpCommentContent()%></textarea>
+						<p class="comment-link">
+							<%
+							if (m != null) {
+							%>
+							<%
+							if (m.getMemberId().equals(pc.getpCommentWriter())) {
+							%>
+							<a href="javascript:void(0)"
+								onclick="modifyComment(this,<%=pc.getpCommentNo()%>, <%=p.getPhotoNo()%>);">수정</a>
+							<a href="javascript:void(0)">삭제</a>
+							<%
+							}
+							%>
+							<a href="javascript:void(0)" class="recShow">답글</a>
+							<%
+							}
+							%>
+						</p>
+					</li>
+				</ul>
+				<%
+				for (PhotoComment pct : reCommentList) {
+				%>
+				<%
+				if (pct.getpCommentRef() == pc.getpCommentNo()) {
+				%>
+				<ul class="posting-comment reply">
+					<li><span class="material-icons">subdirectory_arrow_right</span>
+						<span class="material-icons">account_box</span></li>
+					<li>
+						<p class="comment-info">
+							<span><%=pct.getpCommentWriter()%></span> <span><%=pct.getpCommentDate()%></span>
+						</p>
+						<p class="comment-content"><%=pct.getpCommentContentBr()%>
+						<p class="comment-link">
+					</li>
+				</ul>
+				<%
+				}
+				%>
+				<%
+				}
+				%>
+
+				<%
+				if (m != null) {
+				%>
+				<div class="inputRecommentBox">
+					<form action="/insertComment.do" method="post">
+						<ul>
+							<li><span class="material-icons">subdirectory_arrow_right</span>
+							</li>
+							<li><input type="hidden" name="pCommentWriter"
+								value="<%=m.getMemberId()%>"> <input type="hidden"
+								name="photoRef" value="<%=p.getPhotoNo()%>"> <input
+								type="hidden" name="pCommentRef" value="<%=pc.getpCommentNo()%>">
+								<textarea class="input-form" name="pCommentContent"></textarea></li>
+							<li>
+								<button type="submit" class="btn">등록</button>
+							</li>
+						</ul>
+					</form>
+				</div>
+				<%
+				}
+				%>
+				<%
+				}
+				%>
+			</div>
+
 			<%
 			if (m != null && p.getPhotoWriter().equals(m.getMemberId())) {
 			%>
@@ -159,13 +411,32 @@ th {
 			<%
 			}
 			%>
+
+
 		</div>
+
 	</div>
+
 	<script>
 		function photoDelete(photoNo){
 			if(confirm("삭제하시겠습니까?")) {
 				location.href="/photoDelete.do?photoNo="+photoNo;
 			}
+		}
+		
+		$(".recShow").on("click",function(){
+			const idx = $(".recShow").index(this);
+			if($(this).text() == "답글") {
+				$(this).text("취소");
+			} else {
+				$(this).text("답글");
+			}
+			$(".inputRecommentBox").eq(idx).toggle();
+			$(".inputRecommentBox").eq(idx).find("textarea").focus();
+		});
+		
+		function modifyComment(obj,pCommentNo,photoNo) {
+			
 		}
 	</script>
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>

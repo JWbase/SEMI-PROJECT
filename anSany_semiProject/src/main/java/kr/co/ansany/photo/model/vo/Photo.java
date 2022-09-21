@@ -8,6 +8,7 @@ public class Photo {
 	private int photoReadCount;
 	private String photoDate;
 	private String photoFilePath;
+	private String photoFileName;
 
 	public Photo() {
 		super();
@@ -15,7 +16,7 @@ public class Photo {
 	}
 
 	public Photo(int photoNo, String photoWriter, String photoTitle, String photoContent, int photoReadCount,
-			String photoDate, String photoFilePath) {
+			String photoDate, String photoFilePath, String photoFileName) {
 		super();
 		this.photoNo = photoNo;
 		this.photoWriter = photoWriter;
@@ -24,6 +25,7 @@ public class Photo {
 		this.photoReadCount = photoReadCount;
 		this.photoDate = photoDate;
 		this.photoFilePath = photoFilePath;
+		this.photoFileName = photoFileName;
 	}
 
 	public int getPhotoNo() {
@@ -54,6 +56,10 @@ public class Photo {
 		return photoContent;
 	}
 
+	public String getPhotoContentBr() {
+		return photoContent.replaceAll("\r\n", "<br>");
+	}
+
 	public void setPhotoContent(String photoContent) {
 		this.photoContent = photoContent;
 	}
@@ -80,6 +86,14 @@ public class Photo {
 
 	public void setPhotoFilePath(String photoFilePath) {
 		this.photoFilePath = photoFilePath;
+	}
+
+	public String getPhotoFileName() {
+		return photoFileName;
+	}
+
+	public void setPhotoFileName(String photoFileName) {
+		this.photoFileName = photoFileName;
 	}
 
 }

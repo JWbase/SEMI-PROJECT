@@ -11,7 +11,7 @@ String pageNavi = (String) request.getAttribute("pageNavi");
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>공지사항 목록</title>
 <link rel="stylesheet" href="/css/bootstrap.css" />
 <style>
 .header-logo>a>img {

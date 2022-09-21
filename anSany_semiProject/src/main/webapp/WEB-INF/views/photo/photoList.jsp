@@ -7,7 +7,7 @@ int totalCount = (Integer) request.getAttribute("totalCount");
 <html>
 <head>
 <meta charset="UTF-8">
-<title>사진게시판</title>
+<title>사진전 목록</title>
 <link rel="stylesheet" href="/css/bootstrap.css" />
 <style>
 .header-logo>a>img {
