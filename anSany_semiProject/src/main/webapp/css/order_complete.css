@@ -1,0 +1,126 @@
+.content{
+    width: 100%;
+    padding-top: 81px;
+    max-width: 1920px;
+    background-color: #fff;
+}
+.order-wrap{
+    width: 100%;
+    background-color: #fff;
+}
+.order-content{
+    margin: 0 auto;
+    width: 1200px;
+    background-color: #fff;
+    padding-bottom: 81px;
+}
+.order-title{
+    padding-top: 100px;
+    text-align: center;
+}
+.order-title>h1{
+    font-family: ns-bold;
+    font-size: 50px;
+}
+/* 주문 단계 표시 */
+.order-step-wrap{
+    width: 400px;
+    height: 120px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.order-step{
+    width: 80px;
+    height: 120px;
+    float: left;
+}
+.order-step-circle{
+    width: 80px;
+    height: 80px;
+    float: left;
+    border-radius: 90px;
+    background-color: #F1F1F1;
+    text-align: center;
+    box-sizing: border-box;
+    border: 2px solid #F1F1F1;
+}
+.order-step-line{
+    width: 80px;
+    height: 2px;
+    float: left;
+    background-color: #F1F1F1;
+    margin-top: 40px;
+}
+.order-step-circle>span{
+    font-size: 40px;
+    color: #BBBBBB;
+    margin-top: 19px;
+}
+.order-step>p{
+    text-align: center;
+    color: #BBBBBB;
+    font-family: ns-bold;
+    float: left;
+    width: 80px;
+}
+/* 완료한 주문 단계 */
+.complete-step{
+    background-color: #fff;
+    border-color: #ECB365;
+}
+.complete-step>span{
+    color: #ECB365;
+}
+.complete-step+p{
+    color: #ECB365;
+}
+/* 진행중인 주문 단계 */
+.active-step{
+    background-color: #ECB365;
+    border-color: #ECB365;
+}
+.active-step>span{
+    color: #fff;
+}
+.active-step+p{
+    color: #ECB365;
+}
+
+/* 주문 완료 메시지 */
+.complete-msg{
+    margin-top: 50px;
+    width: 100%;
+}
+.complete-msg>div{
+    text-align: center;
+}
+.complete-msg>div:first-of-type>span{
+    padding-top: 50px;
+    font-size: 70px;
+}
+.complete-msg>div:last-of-type{
+    padding: 50px 0px;
+}
+.complete-msg>div:last-of-type>p{
+    font-size: 20px;
+    font-family: ns-bold;
+    margin: 10px;
+}
+.btn-wrap{
+    padding-bottom: 81px;
+    text-align: center;
+}
+.btn-wrap>button{
+    width: 200px;
+    height: 60px;
+    border: 1px solid #000;
+    font-family: ns-bold;
+    font-size: 18px;
+    background-color: #fff;
+}
+.btn-wrap>button:hover{
+    cursor: pointer;
+    background: #000;
+    color: #fff;
+    transition-duration: 0.5s;
+}

@@ -1,0 +1,404 @@
+.content{
+    width: 100%;
+    padding-top: 81px;
+    max-width: 1920px;
+    background-color: #fff;
+}
+.cart-wrap{
+    width: 100%;
+    background-color: #fff;
+}
+.cart-content{
+    margin: 0 auto;
+    width: 1200px;
+    background-color: #fff;
+    padding-bottom: 81px;
+}
+.cart-title{
+    padding-top: 100px;
+    text-align: center;
+}
+.cart-title>h1{
+    font-family: ns-bold;
+    font-size: 50px;
+}
+/* 주문 단계 표시 */
+.order-step-wrap{
+    width: 400px;
+    height: 120px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.order-step{
+    width: 80px;
+    height: 120px;
+    float: left;
+}
+.order-step-circle{
+    width: 80px;
+    height: 80px;
+    float: left;
+    border-radius: 90px;
+    background-color: #F1F1F1;
+    text-align: center;
+    box-sizing: border-box;
+    border: 2px solid #F1F1F1;
+}
+.order-step-line{
+    width: 80px;
+    height: 2px;
+    float: left;
+    background-color: #F1F1F1;
+    margin-top: 40px;
+}
+.order-step-circle>span{
+    font-size: 40px;
+    color: #BBBBBB;
+    margin-top: 19px;
+}
+.order-step>p{
+    text-align: center;
+    color: #BBBBBB;
+    font-family: ns-bold;
+    float: left;
+    width: 80px;
+}
+/* 완료한 주문 단계 */
+.complete-step{
+    background-color: #fff;
+    border-color: #ECB365;
+}
+.complete-step>span{
+    color: #ECB365;
+}
+.complete-step+p{
+    color: #ECB365;
+}
+/* 진행중인 주문 단계 */
+.active-step{
+    background-color: #ECB365;
+    border-color: #ECB365;
+}
+.active-step>span{
+    color: #fff;
+}
+.active-step+p{
+    color: #ECB365;
+}
+
+/* 장바구니 빈 테이블 */
+.cart-empty>table{
+    margin-top: 50px;
+    width: 100%;
+    border-collapse: collapse;
+}
+.cart-empty td{
+    text-align: center;
+}
+.cart-empty div{
+    padding-top: 50px;
+}
+.cart-empty div:first-of-type>span{
+    font-size: 70px;
+}
+.cart-empty div:last-of-type>span{
+    font-size: 20px;
+    font-family: ns-bold;
+    color: rgb(220, 75, 75);
+}
+.btn-wrap.empty{
+    margin: 0;
+    padding-bottom: 81px;
+}
+.cart-empty>.btn-wrap.empty>button{
+    width: 200px;
+    height: 60px;
+    border: 1px solid #000;
+    font-family: ns-bold;
+    font-size: 18px;
+    background-color: #fff;
+    color: #000;
+}
+.cart-empty>.btn-wrap.empty>button:hover{
+    cursor: pointer;
+    background: #000;
+    color: #fff;
+    transition-duration: 0.5s;
+    border-color: #000;
+}
+
+/* 장바구니 전체선택, 선택삭제 */
+.cart-select{
+    width: 100%;
+    height: 50px;
+    margin-top: 50px;
+    overflow: hidden;
+}
+.cart-select>div{
+    width: 600px;
+    height: 50px;
+    float: left;
+}
+.selectbox{
+    padding: 12.5px 0px 12.5px 0px;
+    box-sizing: border-box;
+}
+/* 전체선택 체크박스 디자인 바꿈 */
+#select-all{
+    display: none;
+}
+#select-all2{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border:1px solid #000;
+    position: relative;
+    vertical-align: bottom;
+}
+#select-all:checked+label::after{
+    content:'✔';
+    font-size: 15px;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    top: -1px;
+}
+.select-removebtn{
+    padding: 10px 0px 10px 0px;
+    box-sizing: border-box;
+}
+#select-removebtn{
+    float: right;
+    width: 140px;
+    height: 30px;
+    border: 1px solid #000;
+    background-color: #fff;
+    font-size: 14px;
+    font-family: ns-m;
+}
+#select-removebtn:hover{
+    cursor: pointer;
+    background-color: #000;
+    color: #fff;
+    transition-duration: 0.5s;
+}
+.cart-content label:hover{
+    cursor: pointer;
+}
+
+/* 장바구니 테이블 */
+.cart-table>table{
+    width: 100%;
+    border-collapse: collapse;
+}
+.cart-table thead>tr{
+    border-top: 2px solid #000;
+    border-bottom: 1px solid #BBBBBB;
+    background-color: #F1F1F1;
+}
+.cart-table thead>tr>th{
+    height: 50px;
+}
+.cart-table tbody>tr{
+    border-bottom: 1px solid #BBBBBB;
+}
+/* 제품별 체크박스 디자인 바꿈*/
+.cart-checkbox>input{
+    display: none;
+}
+.cart-checkbox>label{
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #000;
+    position: relative;
+}
+.cart-checkbox>input:checked+label::after{
+    content:'✔';
+    font-size: 10px;
+    width: 15px;
+    height: 15px;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    top:0;
+}
+.cart-img{
+    width: 200px;
+    height: 200px;
+}
+.cart-img>img{
+    max-width: 150px;
+    margin: 25px;
+    background-color: #F1F1F1;
+}
+.cart-name{
+    width: 360px;
+}
+.cart-name>span{
+    margin-left: 20px;
+    font-family: ns-bold;
+    font-size: 17px;
+}
+.cart-price, .cart-pricesum{
+    width: 150px;
+    text-align: right;
+}
+.cart-price>span, .cart-pricesum>span{
+    margin-right: 15px;
+}
+.cart-price>span,.cart-price>input,
+.cart-count>div>input,
+.cart-pricesum>span,.cart-pricesum>input{
+    font-family: ns-m;
+}
+.cart-price>span, .cart-price>input{
+    color: #777777;
+}
+.cart-price>input,.cart-pricesum>input{
+    width: 100px;
+    text-align: right;
+    font-size: 15px;
+    border: none;
+}
+.cart-count{
+    width: 200px;
+    text-align: center;
+}
+.cart-count>div{
+    width: 90px;
+    height: 30px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.cart-count>div>input, .cart-count>div>button{
+    width: 30px;
+    height: 30px;
+    box-sizing: border-box;
+    float: left;
+    text-align: center;
+    padding: 0;
+    border: 0;
+    border-top: 1px solid #BBBBBB;
+    border-bottom: 1px solid #BBBBBB;
+    background-color: #fff;
+}
+.cart-table input:focus{
+    outline: 0;
+}
+.cart-count>div>button>span{
+    line-height: 30px;
+    color: #BBBBBB;
+}
+.cart-count>div>button:hover{
+    cursor: pointer;
+}
+.cart-count>div>button>span:hover{
+    color: #000;
+    transition-duration: 0.5s;
+}
+.cart-count>div>.cart-count-minus{
+    border-left: 1px solid #BBBBBB;
+}
+.cart-count>div>.cart-count-plus{
+    border-right: 1px solid #BBBBBB;
+}
+.cart-remove{
+    width: 110px;
+    text-align: center;
+}
+.cart-removebtn{
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+}
+.cart-removebtn>span{
+    line-height: 30px;
+    font-weight: 900;
+    color: #BBBBBB;
+}
+.cart-removebtn:hover{
+    cursor: pointer;
+}
+.cart-removebtn>span:hover{
+    color: #000;
+    transition-duration: 0.5s;
+}
+/* 결제 예상 금액 */
+tfoot>tr{
+    text-align: right;
+    height: 50px;
+    background-color: #F1F1F1;
+}
+tfoot>tr:first-child{
+    vertical-align: bottom;
+}
+tfoot>tr:last-child{
+    vertical-align: top;
+}
+tfoot>tr>td>span:last-child{
+    margin-right: 25px;
+}
+.tfoot-span1{
+    font-family: ns-bold;
+    font-size: 17px;
+}
+.tfoot-span2{
+    font-family: ns-bold;
+    font-size: 20px;
+    color: #5865f5;
+}
+.tfoot-span3{
+    font-size: 12px;
+    color: #777777;
+}
+tfoot>tr>td>input{
+    border: none;
+    background-color: transparent;
+    height: 25px;
+    text-align: right;
+    font-family: ns-bold;
+}
+#total-count{
+    width: 35px;
+    font-size: 18px;
+}
+#total-price{
+    width: 200px;
+    font-size: 22px;
+}
+/* 쇼핑 계속 / 구매 버튼 */
+.btn-wrap{
+    text-align: center;
+    margin-top: 50px;
+}
+.btn-wrap>button{
+    width: 200px;
+    height: 60px;
+    border: 1px solid #000;
+    font-family: ns-bold;
+    font-size: 18px;
+}
+.btn-wrap>button:first-child{
+    background-color: #fff;
+}
+.btn-wrap>button:last-child{
+    background-color: #000;
+    color: #fff;
+}
+.btn-wrap>button:first-child:hover{
+    cursor: pointer;
+    background: #000;
+    color: #fff;
+    transition-duration: 0.5s;
+}
+.btn-wrap>button:last-child:hover{
+    cursor: pointer;
+    background: #5865f5;
+    border-color: #5865f5;
+    transition-duration: 0.5s;
+}

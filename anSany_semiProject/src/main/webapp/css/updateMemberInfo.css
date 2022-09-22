@@ -1,0 +1,187 @@
+*{
+    font-family: ns-r;
+}
+body{
+    padding: 0;
+    margin: 0;
+}
+content{
+    display: block;
+    padding-top: 81px;
+    background-color: #fff;
+}
+.memberInfo-wrap{
+    margin: 0 auto;
+    padding: 0;
+    max-width: 1000px;
+}
+.memberInfo-header{
+    margin: 0 auto;
+    padding: 160px 0;
+    padding-bottom: 0;
+    overflow: hidden;
+}
+.memberInfo-header>h1{
+    margin: 0;
+    text-align: center;
+    padding-bottom: 40px;
+    font-family: ns-bold;
+}
+.span-wrap{
+    padding-bottom: 30px;
+    border-bottom: 1px solid #444;
+    overflow: hidden;
+}
+.span-wrap span{
+    margin-top: 50px;
+    font-size: larger;
+}
+.span-box-left{
+    float: left;
+}
+.span-box-right{
+    float: right;
+}
+.myPageLink{
+    font-family: ns-bold;
+    font-size: 20px;
+    margin: 0;
+    padding-left: 10px;
+    text-decoration: none;
+    color: #000;    
+}
+.myPageLink:hover{
+    color:  #5865f5;
+}
+.withdrawalLink{
+    padding-right: 10px;
+    text-decoration: none;
+    color: #000;
+    font-family: ns-bold;
+    font-size: 20px;
+    overflow: hidden;
+}
+.withdrawalLink:hover{
+    color:  #5865f5;
+}
+.memberInfo-content{
+    width: 1000px;
+    margin: 0 auto;
+    padding: 0;
+}
+.updateMemberInfo>form{
+    padding: 20px;
+    padding-left: 50px;
+}
+.update-box{
+    width: 100%;
+    overflow: hidden;
+    padding: 10px 0;
+
+}
+.update-box>label{
+    width: 200px;
+    display: block;
+    float: left;
+    font-family: ns-bold;
+    position: relative;
+    top: 20px;
+}
+.update-input-form{
+    width: 700px;
+    height: 56px;
+    margin: 0;
+    border: none;
+    border-bottom: 1px solid #e1e1e1;
+}
+.update-input-form:focus{
+    outline-style: none;
+}
+.update-box>span{
+    width: 100%;
+    display: inline-block;
+    float: left;
+    padding-left: 200px;
+}
+.short-input-form{
+    width: 500px;
+    height: 56px;
+    border: none;
+    border-bottom: 1px solid #e1e1e1;
+}
+.short-input-form:focus{
+    outline-style: none;
+}
+#auth{
+    margin-left: 200px;
+    width: 100%;
+    padding-top: 10px;
+    display: none;
+}
+#auth>input{
+    width: 500px;
+    height: 56px;
+    border: none;
+    border-bottom: 1px solid #e1e1e1;
+}
+#auth>input:focus{
+    outline-style: none;
+}
+#timeZone{
+	color: red;
+}
+#memberAddr2{
+    float: left;
+    margin-left: 200px;
+    padding-top: 10px;
+}
+#detailAddress{
+    float: left;
+    margin-left: 200px;
+    padding-top: 10px;
+}
+.update-box>button{
+    width: 200px;
+    height: 59px;
+    border: none;
+    background-color: #e1e1e1;
+    font-size: 17px;
+}
+.update-box>button:hover{
+    cursor: pointer;
+}
+#authBtn{
+    width: 200px;
+    height: 59px;
+    border: none;
+    background-color: #e1e1e1;
+    font-size: 17px;
+}
+#authBtn:hover{
+    cursor: pointer;
+}
+.memberInfo-footer{
+    width: 1000px;
+    margin: 0 auto;
+    padding-bottom: 30px;
+}
+.updateBtn-box{
+    padding: 50px 0;
+    text-align: center;
+}
+.updateBtn-box>button{
+    width: 200px;
+    height: 56px;
+    border: none;
+    background-color: #141414;
+    color: #fff;
+    font-size: 20px;
+}
+.updateBtn-box>button:hover{
+    cursor: pointer;
+    transform: scale(1.02,1.02);
+}
+.updateBtn-box>button[type="button"]{
+    background-color: #444;
+    margin-right: 10px;
+}

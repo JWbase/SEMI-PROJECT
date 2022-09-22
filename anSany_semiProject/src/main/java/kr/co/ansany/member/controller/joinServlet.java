@@ -18,51 +18,49 @@ import kr.co.ansany.member.model.vo.Member;
 @WebServlet(name = "join", urlPatterns = { "/join.do" })
 public class joinServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public joinServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
-	 * @see HttpServlet#HttpServlet()
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	public joinServlet() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// 1. 인코딩
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//1. 인코딩
 		request.setCharacterEncoding("utf-8");
-		// 2. 값추출
+		//2. 값추출
 		String memberId = request.getParameter("memberId");
 		String memberPw = request.getParameter("memberPw");
 		String memberEmail = request.getParameter("memberEmail");
 		String memberName = request.getParameter("memberName");
 		String memberBirth = request.getParameter("memberBirth");
 		String memberPhone = request.getParameter("memberPhone");
-
+		
 		Member m = new Member();
-
+		
 		m.setMemberId(memberId);
 		m.setMemberPw(memberPw);
 		m.setMemberEmail(memberEmail);
 		m.setMemberName(memberName);
 		m.setMemberBirth(memberBirth);
 		m.setMemberPhone(memberPhone);
-
-		// 3. 비즈니스로직
+		
+		//3. 비즈니스로직 
 		MemberService service = new MemberService();
 		int result = service.insertMember(m);
-
-		// 4. 결과처리
+		
+		//4. 결과처리
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
-		if (result > 0) {
+		if(result>0) {
 			request.setAttribute("title", "회원가입성공");
 			request.setAttribute("msg", "환영합니다.");
 			request.setAttribute("icon", "success");
-		} else {
+		}else {
 			request.setAttribute("title", "회원가입실패");
 			request.setAttribute("msg", "관리자에게 문의하세요");
 			request.setAttribute("icon", "error");
@@ -72,11 +70,9 @@ public class joinServlet extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

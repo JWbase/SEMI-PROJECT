@@ -110,7 +110,7 @@ th {
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
 	<div class="page-wrap">
 		<div class="page-content">
-			<div class="page-title">공지사항</div>
+			<div class="page-title">자유게시판</div>
 
 			<table class="table table-group-divider" id="freeBoardView">
 				<tr class="table-secondary">

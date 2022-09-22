@@ -1,0 +1,144 @@
+body{
+    background-color: black;
+}
+.product-wrap{
+    background-color: white;
+    margin: auto;
+}
+.product-top{
+    width: 1920px;
+    height: 500px;
+    padding-top: 120px;
+    background-image: url(../img/product-top.jpg);
+    margin: auto;
+}
+.product-top-title{
+    text-align: center;
+    font-size: 70px;
+    color: white;
+    font-family: ns-bold;
+}
+.product-top-category{
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+.product-top-category div{
+    width: 170px;
+    height: 180px;
+    margin: 0px 15px;
+    background-color: white;
+    background-repeat: no-repeat;
+    background-position: center 30px;
+    background-size: 50%;
+    padding: 0;
+}
+.product-top-category a{
+    text-decoration: none;
+    color: black;
+    font-size: 15px;
+    font-weight: 700;
+    display: block;
+    padding-top: 125px;
+    padding-bottom: 35px;
+    text-align: center;
+}
+.product-top-category a:hover{
+    outline: 5px solid rgb(240, 84, 84);
+}
+.product-top-1{
+    background-image: url(../img/product-top-1.png);
+
+}
+.product-top-2{
+    background-image: url(../img/product-top-2.png);
+}
+.product-top-3{
+    background-image: url(../img/product-top-3.png);
+}
+.product-top-4{
+    background-image: url(../img/product-top-4.png);
+}
+.product-wrap{
+    width: 1920px;
+}
+.product-content{
+    margin: 80px 0px;
+    width: 1870px;
+}
+.product-content-title{
+    margin: 0;
+    margin-bottom: 25px;
+    padding-left: 25px;
+}
+.product-wrapper{
+    width: 1895px;
+    padding-left: 25px;
+    /* inline-block 여백 없애는 코드. BUT, font-size를 다 지정해줘야 함*/
+    font-size: 0; 
+}
+.product{
+    width: 388.7px;
+    height: 540px;
+    /* float: left; */
+    display: inline-block;
+    background-color: #f4f7fa;
+    padding: 30px;
+    margin-right: 25px;
+    margin-bottom: 30px;
+}
+
+.product-img>img{
+    width: 90%;
+    height: 350px;
+    margin-bottom: 20px;
+}
+.product-banner{
+    width: 922.6px;
+    height: 600px;
+    /* float: left; */
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 25px;
+    margin-bottom: 30px;
+}
+.product-banner img{
+    width: 100%;
+    height: 100%;
+}
+.product-name{
+    color: black;
+    font-family: ns-bold;
+    font-size: 22px;
+}
+.product-info{
+    color: gray;
+    font-family: ns-m;
+    font-weight: 700;
+    font-size: 14px;
+    margin-top: 5px;
+    margin-bottom: 40px;
+}
+.product-price{
+    color: black;
+    font-family: ns-bold;
+    font-size: 20px;
+}
+.more-btn{
+    width: 150px;
+    height: 100px;
+    padding: 0px;
+    padding-bottom: 20px;
+    background-color: #fff;
+    border: none;
+    font-family: ns-bold;
+    font-size: 20px;
+}
+.more-btn:hover{
+	cursor: pointer;
+}
+.more-btn-div{
+    width: 1920px;
+    display: flex;
+    justify-content: center;
+}

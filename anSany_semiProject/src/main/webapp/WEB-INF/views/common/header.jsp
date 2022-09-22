@@ -20,14 +20,14 @@ Member m = (Member) session.getAttribute("m");
 				</div>
 				<div class="header-navi">
 					<ul>
-						<li><a href="#">제품</a>
+						<li><a href="/productList.do">제품</a>
 							<ul>
 								<li><a href="#">헤드폰/이어폰</a></li>
 								<li><a href="#">스피커</a></li>
 								<li><a href="#">턴테이블</a></li>
 								<li><a href="#">워크맨</a></li>
 							</ul></li>
-						<li><a href="#">커뮤니티</a>
+						<li><a href="/noticeList.do?reqPage=1">커뮤니티</a>
 							<ul>
 								<li><a href="/noticeList.do?reqPage=1">공지사항</a></li>
 								<li><a href="#">구매후기</a></li>
@@ -53,7 +53,7 @@ Member m = (Member) session.getAttribute("m");
 				<div class="header-icon">
 					<div class="icon-wrap">
 						<div>
-							<a href="#"> <span class="material-icons">shopping_cart</span>
+							<a href="/cartView.do"> <span class="material-icons">shopping_cart</span>
 							</a>
 						</div>
 						<div>
@@ -65,7 +65,7 @@ Member m = (Member) session.getAttribute("m");
 							<%
 							} else {
 							%>
-							<a href="#"> <span class="material-icons"
+							<a href="/myPageFrm.do"> <span class="material-icons"
 								style="color: #5865f5">person</span>
 							</a>
 							<%

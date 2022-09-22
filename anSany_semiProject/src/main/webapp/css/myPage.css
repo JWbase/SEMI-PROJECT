@@ -1,0 +1,122 @@
+*{
+    font-family: ns-r;
+}
+body{
+    padding: 0;
+    margin: 0;
+}
+content{
+    display: block;
+    padding-top: 81px;
+    background-color: #fff;
+}
+.mypage-wrap{
+    margin: 0 auto;
+    max-width: 1200px;
+    padding-bottom: 300px;
+}
+.mypage-header{
+    margin: 0 auto;
+    padding: 160px 0;
+    overflow: hidden;
+}
+.mypage-header>h1{
+    margin: 0;
+    text-align: center;
+    padding-bottom: 40px;
+    font-family: ns-bold;
+}
+.span-wrap{
+    padding-bottom: 10px;
+}
+.mypage-header span{
+    font-family: ns-bold;
+    font-size: 20px;
+    margin: 0;
+    padding-left: 10px;    
+}
+.logoutLink{
+    float: right;
+    padding-right: 10px;
+    text-decoration: none;
+    color: #000;
+    font-family: ns-bold;
+    font-size: 20px;
+}
+.logoutLink:hover{
+    color:  #5865f5;
+}
+.header-box{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-image: linear-gradient(to left, #434343 0%, black 100%);
+}
+.header-box li{
+    float: left;
+    width: calc(100%/3);
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header-box li:hover{
+    background-color: #434343;
+    color: #fff;
+}
+.header-box a{
+    text-decoration: none;
+    text-align: center;
+    color: #fff;
+    font-size: 30px;
+    font-family: ns-bold;
+}
+.mypage-content{
+    width: 100%;
+}
+.memberOrder_tbl>h1{
+    font-size: 20px;
+    font-family: ns-bold;
+    padding-bottom: 30px;
+    margin: 0;
+}
+table{
+    width: 100%;
+}
+colgroup{
+    box-sizing: border-box;
+}
+th{
+    border-top: 1px solid #d4d4d4;
+    border-bottom: 1px solid #efefef;
+    text-align: center;
+    line-height: 40px;
+    color: #221e1f;
+}
+td{
+    color: #221e1f;
+    text-align: center;
+}
+.memberOrder_tbl>p{
+    margin: 30px 0;
+    padding: 10px 0;
+    background-color: #d4d4d4;
+    text-align: center;
+}
+.myBoardView_tbl>h1{
+    font-size: 20px;
+    font-family: ns-bold;
+    margin: 0;
+    padding-top: 50px;
+    padding-bottom: 30px;
+}
+.colDelete-btn>button{
+    width: 100%;
+    border: none;
+    font-size: 17px;
+}
+.colDelete-btn>button:hover{
+    cursor: pointer;
+    font-family: ns-bold;
+}

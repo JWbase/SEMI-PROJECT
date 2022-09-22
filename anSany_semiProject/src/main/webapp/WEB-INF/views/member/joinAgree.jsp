@@ -5,6 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>약관동의</title>
+<style>
+	.header-logo>a>img{
+		margin-bottom: 14px;
+	}
+</style>
 <!--css-->
 <link rel="stylesheet" href="/css/bootstrap.css">
 <link rel="stylesheet" href="/css/joinAgree.css">
@@ -17,11 +22,6 @@
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <!--jquery-->
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<style>
-.header-logo>a>img {
-	margin-bottom: 14px;
-}
-</style>
 </head>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
@@ -288,7 +288,7 @@
 					</div>
 				</div>
 				<div class="agreeOneBtn">
-					<button type="button" class="chkBtn">동의</button>
+						<button type="button" class="chkBtn">동의</button>
 				</div>
 			</div>
 		</div>
