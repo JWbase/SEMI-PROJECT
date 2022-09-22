@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지사항 작성</title>
+<title>자유게시판 작성</title>
 <link rel="stylesheet" href="/css/bootstrap.css" />
 <style>
 .header-logo>a>img {
@@ -83,23 +83,23 @@ p {
 
 	<div class="page-wrap">
 		<div class="page-content">
-			<div class="page-title">공지사항</div>
-			<form action="/noticeWrite.do" method="post"
+			<div class="page-title">자유게시판</div>
+			<form action="/freeBoardWrite.do" method="post"
 				enctype="multipart/form-data">
 				<table class="table table-borderless" id="noticeWrite">
 					<tr class="table table-dark">
 						<th class="th-1">제목</th>
 						<td class="td-1" style="padding: 0;"><input type="text"
-							name="noticeTitle" class="td-3" style="outline-style: none;"></td>
+							name="freeBoardTitle" class="td-3" style="outline-style: none;"></td>
 						<th class="th-1">첨부파일</th>
 						<td style="text-align: left;"><input type="file"
 							name="upfile" class="td-2"> <input type="hidden"
-							name="noticeWriter" value="<%=m.getMemberId()%>"></td>
+							name="freeBoardWriter" value="<%=m.getMemberId()%>"></td>
 					</tr>
 					<tr>
 						<td colspan="4"
 							style="text-align: left; padding: 0; padding-top: 8px;"><textarea
-								id="noticeContent" name="noticeContent" class="input-form"></textarea></td>
+								id="freeBoardContent" name="freeBoardContent" class="input-form"></textarea></td>
 					</tr>
 					<tr>
 						<td colspan="4">
@@ -111,7 +111,7 @@ p {
 		</div>
 	</div>
 	<script>
-		$("#noticeContent").summernote({
+		$("#freeBoardContent").summernote({
 			height : 400,
 			lang : "ko-KR",
 			callbacks : {

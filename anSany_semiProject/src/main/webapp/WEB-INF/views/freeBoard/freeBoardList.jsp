@@ -200,7 +200,7 @@ tbody tr>td:nth-child(2) {
 				<tbody class="table">
 					<tr>
 						<th scope="row"><%=f.getFreeBoardNo()%></th>
-						<td><a href="/noticeView.do?noticeNo=<%=f.getFreeBoardNo()%>"><%=f.getFreeBoardTitle()%></a></td>
+						<td><a href="/freeBoardView.do?freeBoardNo=<%=f.getFreeBoardNo()%>"><%=f.getFreeBoardTitle()%></a></td>
 						<td><%=f.getFreeBoardWriter()%></td>
 						<td><%=f.getFreeBoardDate()%></td>
 						<td><%=f.getFreeBoardReadCount()%></td>

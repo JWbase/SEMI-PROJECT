@@ -12,9 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.co.ansany.freeboard.model.service.FreeBoardService;
 import kr.co.ansany.freeboard.model.vo.FreeBoardPageData;
-import kr.co.ansany.notice.model.service.NoticeService;
-import kr.co.ansany.notice.model.vo.Notice;
-import kr.co.ansany.notice.model.vo.NoticePageData;
 
 /**
  * Servlet implementation class FreeBoardListServlet

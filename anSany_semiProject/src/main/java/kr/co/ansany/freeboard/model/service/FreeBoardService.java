@@ -66,9 +66,9 @@ public class FreeBoardService {
 		return fpd;
 	}
 
-	public int insertNotice(Notice n) {
+	public int insertFreeBoard(FreeBoard p) {
 		Connection conn = JDBCTemplate.getConnection();
-		int result = dao.insertNotice(conn, n);
+		int result = dao.insertFreeBoard(conn, p);
 		if (result > 0) {
 			JDBCTemplate.commit(conn);
 		} else {
@@ -78,14 +78,14 @@ public class FreeBoardService {
 		return result;
 	}
 
-	public Notice selectOneNotice(int noticeNo) {
+	public FreeBoard selectOnefreeBoard(int freeBoardNo) {
 		Connection conn = JDBCTemplate.getConnection();
-		int result = dao.updateReadCount(conn, noticeNo);
+		int result = dao.updateReadCount(conn, freeBoardNo);
 		if (result > 0) {
 			JDBCTemplate.commit(conn);
-			Notice n = dao.selectOneNotice(conn, noticeNo);
+			FreeBoard f = dao.selectOneFreeBoard(conn, freeBoardNo);
 			JDBCTemplate.close(conn);
-			return n;
+			return f;
 		} else {
 			JDBCTemplate.rollback(conn);
 			JDBCTemplate.close(conn);
@@ -93,17 +93,17 @@ public class FreeBoardService {
 		}
 	}
 
-	public Notice getNotice(int noticeNo) {
+	public FreeBoard getFreeBoard(int freeBoardNo) {
 		Connection conn = JDBCTemplate.getConnection();
-		Notice n = dao.selectOneNotice(conn, noticeNo);
+		FreeBoard f = dao.selectOneFreeBoard(conn, freeBoardNo);
 		JDBCTemplate.close(conn);
-		return n;
+		return f;
 	}
 
-	public Notice deleteNotice(int noticeNo) {
+	public FreeBoard deleteFreeBoard(int freeBoardNo) {
 		Connection conn = JDBCTemplate.getConnection();
-		Notice n = dao.selectOneNotice(conn, noticeNo);
-		int result = dao.deleteNotice(conn, noticeNo);
+		FreeBoard n = dao.selectOneFreeBoard(conn, freeBoardNo);
+		int result = dao.deleteFreeBoard(conn, freeBoardNo);
 		if (result > 0) {
 			JDBCTemplate.commit(conn);
 		} else {
@@ -114,9 +114,9 @@ public class FreeBoardService {
 		return n;
 	}
 
-	public int updateNotice(Notice n) {
+	public int updateFreeBoard(FreeBoard f) {
 		Connection conn = JDBCTemplate.getConnection();
-		int result = dao.updateNotice(conn, n);
+		int result = dao.updateFreeBoard(conn, f);
 		if (result > 0) {
 			JDBCTemplate.commit(conn);
 		} else {

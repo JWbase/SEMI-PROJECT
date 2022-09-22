@@ -64,17 +64,17 @@ public class FreeBoardDao {
 		return totalCount;
 	}
 
-	public int insertNotice(Connection conn, Notice n) {
+	public int insertFreeBoard(Connection conn, FreeBoard p) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String query = "insert into notice_tbl values(notice_seq.nextval,?,?,?,0,to_char(sysdate, 'yyyy-mm-dd'),?,?)";
+		String query = "insert into freeboard_tbl values(freeboard_seq.nextval,?,?,?,0,to_char(sysdate, 'yyyy-mm-dd'),?,?)";
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, n.getNoticeTitle());
-			pstmt.setString(2, n.getNoticeWriter());
-			pstmt.setString(3, n.getNoticeContent());
-			pstmt.setString(4, n.getNoticeFilename());
-			pstmt.setString(5, n.getNoticeFilepath());
+			pstmt.setString(1, p.getFreeBoardTitle());
+			pstmt.setString(2, p.getFreeBoardWriter());
+			pstmt.setString(3, p.getFreeBoardContent());
+			pstmt.setString(4, p.getFreeBoardFilename());
+			pstmt.setString(5, p.getFreeBoardFilepath());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -86,25 +86,25 @@ public class FreeBoardDao {
 		return result;
 	}
 
-	public Notice selectOneNotice(Connection conn, int noticeNo) {
+	public FreeBoard selectOneFreeBoard(Connection conn, int freeBoardNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		Notice n = null;
-		String query = "select * from notice_tbl where notice_no=?";
+		FreeBoard f = null;
+		String query = "select * from freeBoard_tbl where freeBoard_no=?";
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, noticeNo);
+			pstmt.setInt(1, freeBoardNo);
 			rset = pstmt.executeQuery();
 			if (rset.next()) {
-				n = new Notice();
-				n.setNoticeFilename(rset.getString("notice_filename"));
-				n.setNoticeFilepath(rset.getString("notice_filepath"));
-				n.setNoticeContent(rset.getString("notice_content"));
-				n.setNoticeDate(rset.getString("notice_date"));
-				n.setNoticeNo(rset.getInt("notice_no"));
-				n.setNoticeReadCount(rset.getInt("notice_readcount"));
-				n.setNoticeTitle(rset.getString("notice_title"));
-				n.setNoticeWriter(rset.getString("notice_writer"));
+				f = new FreeBoard();
+				f.setFreeBoardFilename(rset.getString("FreeBoard_filename"));
+				f.setFreeBoardFilepath(rset.getString("FreeBoard_filepath"));
+				f.setFreeBoardContent(rset.getString("FreeBoard_content"));
+				f.setFreeBoardDate(rset.getString("FreeBoard_date"));
+				f.setFreeBoardNo(rset.getInt("FreeBoard_no"));
+				f.setFreeBoardReadCount(rset.getInt("FreeBoard_readcount"));
+				f.setFreeBoardTitle(rset.getString("FreeBoard_title"));
+				f.setFreeBoardWriter(rset.getString("FreeBoard_writer"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -113,16 +113,16 @@ public class FreeBoardDao {
 			JDBCTemplate.close(rset);
 			JDBCTemplate.close(pstmt);
 		}
-		return n;
+		return f;
 	}
 
-	public int updateReadCount(Connection conn, int noticeNo) {
+	public int updateReadCount(Connection conn, int freeBoardNo) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String query = "update notice_tbl set notice_readcount = notice_readcount + 1 where notice_no = ?";
+		String query = "update freeBoard_tbl set freeBoard_readcount = freeBoard_readcount + 1 where freeBoard_no = ?";
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, noticeNo);
+			pstmt.setInt(1, freeBoardNo);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -133,13 +133,13 @@ public class FreeBoardDao {
 		return result;
 	}
 
-	public int deleteNotice(Connection conn, int noticeNo) {
+	public int deleteFreeBoard(Connection conn, int freeBoardNo) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String query = "delete from notice_tbl where notice_no=?";
+		String query = "delete from freeboard_tbl where freeboard_no=?";
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, noticeNo);
+			pstmt.setInt(1, freeBoardNo);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -150,17 +150,17 @@ public class FreeBoardDao {
 		return result;
 	}
 
-	public int updateNotice(Connection conn, Notice n) {
+	public int updateFreeBoard(Connection conn, FreeBoard f) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String query = "update notice_tbl set notice_title=?, notice_content=?, notice_filename=?, notice_filepath=? where notice_no = ?";
+		String query = "update freeboard_tbl set freeboard_title=?, freeboard_content=?, freeboard_filename=?, freeboard_filepath=? where freeboard_no = ?";
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, n.getNoticeTitle());
-			pstmt.setString(2, n.getNoticeContent());
-			pstmt.setString(3, n.getNoticeFilename());
-			pstmt.setString(4, n.getNoticeFilepath());
-			pstmt.setInt(5, n.getNoticeNo());
+			pstmt.setString(1, f.getFreeBoardTitle());
+			pstmt.setString(2, f.getFreeBoardContent());
+			pstmt.setString(3, f.getFreeBoardFilename());
+			pstmt.setString(4, f.getFreeBoardFilepath());
+			pstmt.setInt(5, f.getFreeBoardNo());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

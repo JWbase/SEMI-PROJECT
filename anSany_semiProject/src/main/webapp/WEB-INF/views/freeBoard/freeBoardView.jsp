@@ -1,14 +1,14 @@
-<%@page import="kr.co.ansany.notice.model.vo.Notice"%>
+<%@page import="kr.co.ansany.freeboard.model.vo.FreeBoard"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-Notice n = (Notice) request.getAttribute("n");
+FreeBoard f = (FreeBoard) request.getAttribute("f");
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지사항</title>
+<title>자유게시판</title>
 <link rel="stylesheet" href="/css/bootstrap.css" />
 <style>
 .header-logo>a>img {
@@ -53,7 +53,7 @@ p {
 	font-size: 1.5rem;
 }
 
-#noticeContent {
+#freeBoardContent {
 	min-height: 300px;
 	text-align: left;
 	padding-left: 10px;
@@ -112,24 +112,24 @@ th {
 		<div class="page-content">
 			<div class="page-title">공지사항</div>
 
-			<table class="table table-group-divider" id="noticeView">
+			<table class="table table-group-divider" id="freeBoardView">
 				<tr class="table-secondary">
 					<th>제목</th>
-					<td colspan="3" class="td-title"><%=n.getNoticeTitle()%></td>
+					<td colspan="3" class="td-title"><%=f.getFreeBoardTitle()%></td>
 					<th>작성자</th>
-					<td>안사니스토어</td>
+					<td><%=f.getFreeBoardWriter() %></td>
 					<th>조회수</th>
-					<td><%=n.getNoticeReadCount()%></td>
+					<td><%=f.getFreeBoardReadCount()%></td>
 					<th>작성일</th>
-					<td><%=n.getNoticeDate()%></td>
+					<td><%=f.getFreeBoardDate()%></td>
 				</tr>
 				<tr>
 					<th>첨부파일</th>
 					<td colspan="9">
 						<%
-						if (n.getNoticeFilename() != null) {
+						if (f.getFreeBoardFilename() != null) {
 						%> <img src="/img/file.png" width="16px"> <a
-						href="/noticeFileDown.do?noticeNo=<%=n.getNoticeNo()%>"><%=n.getNoticeFilename()%></a>
+						href="/freeBoardFileDown.do?freeBoardNo=<%=f.getFreeBoardNo()%>"><%=f.getFreeBoardFilename()%></a>
 						<%
 						}
 						%>
@@ -138,28 +138,34 @@ th {
 				<tr>
 					<th>내용</th>
 					<td colspan="9">
-						<div id="noticeContent"><%=n.getNoticeContentBr()%></div>
+						<div id="freeBoardContent"><%=f.getfreeBoardContentBr()%></div>
 					</td>
 				</tr>
 			</table>
-			<%
-			if ((m != null && n.getNoticeWriter().equals(m.getMemberId())) || m != null && m.getMemberLevel() == 1) {
-			%>
+			<% if (m != null) {%>
+			<%if (f.getFreeBoardWriter().equals(m.getMemberId())) {%>
 			<div class="wrap-bottom">
 				<div>
-					<button onclick="noticeDelete(<%=n.getNoticeNo()%>);">삭제</button>
-					<a href="/noticeUpdateFrm.do?noticeNo=<%=n.getNoticeNo()%>">수정</a>
+					<button onclick="freeBoardDelete(<%=f.getFreeBoardNo()%>);">삭제</button>
+					<a href="/freeBoardUpdateFrm.do?freeBoardNo=<%=f.getFreeBoardNo()%>">수정</a>
 				</div>
 			</div>
+			<%} else if(m.getMemberLevel() == 1) {%>
+				<div class="wrap-bottom">
+				<div>
+					<button onclick="freeBoardDelete(<%=f.getFreeBoardNo()%>);">삭제</button>
+				</div>
+			</div>
+			<%} %>
 			<%
 			}
 			%>
 		</div>
 	</div>
 	<script>
-		function noticeDelete(noticeNo){
+		function freeBoardDelete(freeBoardNo){
 			if(confirm("삭제하시겠습니까?")) {
-				location.href="/noticeDelete.do?noticeNo="+noticeNo;
+				location.href="/freeBoardDelete.do?freeBoardNo="+freeBoardNo;
 			}
 		}
 	</script>

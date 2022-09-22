@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class NoticeWriteFrmServlet
+ * Servlet implementation class FreeBoardWriteFrmServlet
  */
-@WebServlet(name = "NoticeWriteFrm", urlPatterns = { "/noticeWriteFrm.do" })
-public class NoticeWriteFrmServlet extends HttpServlet {
+@WebServlet(name = "freeBoardWriteFrm", urlPatterns = { "/freeBoardWriteFrm.do" })
+public class FreeBoardWriteFrmServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeWriteFrmServlet() {
+    public FreeBoardWriteFrmServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,7 +29,7 @@ public class NoticeWriteFrmServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/notice/noticeWriteFrm.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/freeBoard/freeBoardWriteFrm.jsp");
 		view.forward(request, response);
 	}
 

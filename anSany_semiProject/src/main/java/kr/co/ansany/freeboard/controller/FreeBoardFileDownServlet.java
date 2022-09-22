@@ -11,20 +11,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.co.ansany.notice.model.service.NoticeService;
-import kr.co.ansany.notice.model.vo.Notice;
+import kr.co.ansany.freeboard.model.service.FreeBoardService;
+import kr.co.ansany.freeboard.model.vo.FreeBoard;
 
 /**
- * Servlet implementation class NoticeFileDownServlet
+ * Servlet implementation class FreeBoardFileDownServlet
  */
-@WebServlet(name = "NoticeFileDown", urlPatterns = { "/noticeFileDown.do" })
-public class NoticeFileDownServlet extends HttpServlet {
+@WebServlet(name = "FreeBoardFileDown", urlPatterns = { "/freeBoardFileDown.do" })
+public class FreeBoardFileDownServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public NoticeFileDownServlet() {
+	public FreeBoardFileDownServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -36,18 +36,18 @@ public class NoticeFileDownServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
-		NoticeService service = new NoticeService();
-		Notice n = service.getNotice(noticeNo);
+		int freeBoardNo = Integer.parseInt(request.getParameter("freeBoardNo"));
+		FreeBoardService service = new FreeBoardService();
+		FreeBoard f = service.getFreeBoard(freeBoardNo);
 
 		String root = getServletContext().getRealPath("/");
-		String downFile = root + "upload/notice/" + n.getNoticeFilepath();
+		String downFile = root + "upload/freeBoard/" + f.getFreeBoardFilepath();
 		FileInputStream fis = new FileInputStream(downFile);
 		BufferedInputStream bis = new BufferedInputStream(fis);
 		ServletOutputStream sos = response.getOutputStream();
 		BufferedOutputStream bos = new BufferedOutputStream(sos);
 
-		String resFilename = new String(n.getNoticeFilename().getBytes("UTF-8"), "ISO-8859-1");
+		String resFilename = new String(f.getFreeBoardFilename().getBytes("UTF-8"), "ISO-8859-1");
 		response.setContentType("application/octet-stream");
 		response.setHeader("Content-Disposition", "attachment;filename=" + resFilename);
 

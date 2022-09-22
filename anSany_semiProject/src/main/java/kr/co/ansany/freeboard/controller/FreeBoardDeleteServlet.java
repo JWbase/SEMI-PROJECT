@@ -10,20 +10,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.co.ansany.freeboard.model.service.FreeBoardService;
+import kr.co.ansany.freeboard.model.vo.FreeBoard;
 import kr.co.ansany.notice.model.service.NoticeService;
 import kr.co.ansany.notice.model.vo.Notice;
 
 /**
- * Servlet implementation class NoticeDeleteServlet
+ * Servlet implementation class FreeBoardDeleteServlet
  */
-@WebServlet(name = "NoticeDelete", urlPatterns = { "/noticeDelete.do" })
-public class NoticeDeleteServlet extends HttpServlet {
+@WebServlet(name = "FreeBoardDelete", urlPatterns = { "/freeBoardDelete.do" })
+public class FreeBoardDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public NoticeDeleteServlet() {
+	public FreeBoardDeleteServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -35,29 +37,29 @@ public class NoticeDeleteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
+		int freeBoardNo = Integer.parseInt(request.getParameter("freeBoardNo"));
 
-		NoticeService service = new NoticeService();
-		Notice n = service.deleteNotice(noticeNo);
+		FreeBoardService service = new FreeBoardService();
+		FreeBoard f = service.deleteFreeBoard(freeBoardNo);
 
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
-		if (n != null) {
+		if (f != null) {
 			
-			if (n.getNoticeFilepath() != null) {
+			if (f.getFreeBoardFilepath() != null) {
 				String root = getServletContext().getRealPath("/");
-				String deleteFile = root + "upload/notice/" + n.getNoticeFilepath();
+				String deleteFile = root + "upload/freeBoard/" + f.getFreeBoardFilepath();
 				File delFile = new File(deleteFile);
 				delFile.delete();
 			}
 			request.setAttribute("title", "삭제완료");
 			request.setAttribute("msg", "삭제가 완료되었습니다.");
 			request.setAttribute("icon", "success");
-			request.setAttribute("loc", "/noticeList.do?reqPage=1");
+			request.setAttribute("loc", "/freeBoardList.do?reqPage=1");
 		} else {
 			request.setAttribute("title", "삭제실패");
 			request.setAttribute("msg", "관리자에게 문의하세요.");
 			request.setAttribute("icon", "error");
-			request.setAttribute("loc", "/noticeView.do?noticeNo=" + noticeNo);
+			request.setAttribute("loc", "/freeBoardView.do?freeBoardNo=" + freeBoardNo);
 		}
 		view.forward(request, response);
 	}

@@ -1,15 +1,15 @@
-<%@page import="kr.co.ansany.notice.model.vo.Notice"%>
+<%@page import="kr.co.ansany.freeboard.model.vo.FreeBoard"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
 <%
-Notice n = (Notice) request.getAttribute("n");
+FreeBoard f = (FreeBoard) request.getAttribute("f");
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지사항 수정</title>
+<title>자유게시판 수정</title>
 <link rel="stylesheet" href="/css/bootstrap.css" />
 <style>
 .header-logo>a>img {
@@ -89,38 +89,42 @@ p {
 	<div class="page-wrap">
 		<div class="page-content">
 			<div class="page-title">공지사항 수정</div>
-			<form action="/noticeUpdate.do" method="post"
+			<form action="/freeBoardUpdate.do" method="post"
 				enctype="multipart/form-data">
-				<table class="table table-borderless" id="noticeWrite">
+				<table class="table table-borderless" id="freeBoardWrite">
 					<tr class="table table-dark">
 						<th class="th-1">제목</th>
 						<td class="td-1" style="padding: 0;"><input type="text"
-							name="noticeTitle" class="td-3" value="<%=n.getNoticeTitle()%>"
-							style="outline-style: none;"> <input type="hidden"
-							name="noticeNo" value="<%=n.getNoticeNo()%>"> <input
-							type="hidden" name="status" value="stay"></td>
+							name="freeBoardTitle" class="td-3"
+							value="<%=f.getFreeBoardTitle()%>" style="outline-style: none;">
+							<input type="hidden" name="freeBoardNo"
+							value="<%=f.getFreeBoardNo()%>"> <input type="hidden"
+							name="status" value="stay"></td>
 
 						<th class="th-1">첨부파일</th>
 						<td style="text-align: left;">
 							<%
-							if (n.getNoticeFilepath() != null) {
+							if (f.getFreeBoardFilepath() != null) {
 							%> <img src="/img/file.png" width="16px" class="delFile"> <span
-							class="delFile"><%=n.getNoticeFilename()%></span>
+							class="delFile"><%=f.getFreeBoardFilename()%></span>
 							<button type="button" class="delFile">삭제</button> <input
 							type="file" name="upfile" style="display: none;"> <input
 							type="hidden" name="oldFilename"
-							value="<%=n.getNoticeFilename()%>"> <input type="hidden"
-							name="oldFilepath" value="<%=n.getNoticeFilepath()%>"> 
-							<%} else {
- %> <input type="file" name="upfile" class="td-2"></td> <%
- }
- %>
-						
+							value="<%=f.getFreeBoardFilename()%>"> <input
+							type="hidden" name="oldFilepath"
+							value="<%=f.getFreeBoardFilepath()%>"> <%
+ } else {
+ %> <input type="file" name="upfile" class="td-2">
+						</td>
+						<%
+						}
+						%>
+
 					</tr>
 					<tr>
 						<td colspan="4"
 							style="text-align: left; padding: 0; padding-top: 8px;"><textarea
-								id="noticeContent" name="noticeContent" class="input-form"><%=n.getNoticeContent()%></textarea>
+								id="freeBoardContent" name="freeBoardContent" class="input-form"><%=f.getFreeBoardContent()%></textarea>
 						</td>
 					</tr>
 					<tr>
@@ -133,7 +137,7 @@ p {
 		</div>
 	</div>
 	<script>
-		$("#noticeContent").summernote({
+		$("#freeBoardContent").summernote({
 			height : 400,
 			lang : "ko-KR",
 			callbacks : {
