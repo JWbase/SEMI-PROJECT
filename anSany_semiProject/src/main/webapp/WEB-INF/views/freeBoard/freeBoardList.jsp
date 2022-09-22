@@ -1,17 +1,17 @@
 <%@page import="oracle.net.aso.n"%>
-<%@page import="kr.co.ansany.notice.model.vo.Notice"%>
+<%@page import="kr.co.ansany.freeboard.model.vo.FreeBoard"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-ArrayList<Notice> list = (ArrayList<Notice>) request.getAttribute("list");
+ArrayList<FreeBoard> list = (ArrayList<FreeBoard>) request.getAttribute("list");
 String pageNavi = (String) request.getAttribute("pageNavi");
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지사항 목록</title>
+<title>자유게시판 목록</title>
 <link rel="stylesheet" href="/css/bootstrap.css" />
 <style>
 .header-logo>a>img {
@@ -27,6 +27,9 @@ String pageNavi = (String) request.getAttribute("pageNavi");
 	background-color: #fff;
 }
 
+.table-secondary {
+	text-align: center;
+}
 
 tbody {
 	text-align: center;
@@ -96,7 +99,6 @@ tbody tr>td:nth-child(2) {
 	width: 1280px;
 	margin: 0 auto;
 	margin-bottom: 50px;
-	text-align: center;
 }
 
 .table>tr>td>a {
@@ -150,15 +152,6 @@ tbody tr>td:nth-child(2) {
 	color: white;
 	border-color: #5865f5;
 }
-.table-hover{
-	border-top: 1.5px solid #000;
-}
-.table-hover>thead>tr{
-	border-bottom: 1.5px solid #000;
-}
-.table-hover>thead>tr>th{
-	color: #000;
-}
 </style>
 </head>
 <body>
@@ -180,19 +173,19 @@ tbody tr>td:nth-child(2) {
 			</ul>
 		</nav>
 		<%
-		if (m != null && m.getMemberLevel() == 1) {
+		if (m != null) {
 		%>
 		<div class="top-wrap">
 			<div>
-				<a href="/noticeWriteFrm.do">글쓰기</a>
+				<a href="/freeBoardWriteFrm.do">글쓰기</a>
 			</div>
 		</div>
 		<%
 		}
 		%>
 		<div class="table_wrap">
-			<table class="table table-hover">
-				<thead class="table">
+			<table class="table table-hover table-group-divider">
+				<thead class="table-secondary">
 					<tr>
 						<th scope="col" style="width: 10%;">번호</th>
 						<th scope="col" style="width: 55%;">제목</th>
@@ -202,15 +195,15 @@ tbody tr>td:nth-child(2) {
 					</tr>
 				</thead>
 				<%
-				for (Notice n : list) {
+				for (FreeBoard f : list) {
 				%>
 				<tbody class="table">
 					<tr>
-						<th scope="row"><%=n.getNoticeNo()%></th>
-						<td><a href="/noticeView.do?noticeNo=<%=n.getNoticeNo()%>"><%=n.getNoticeTitle()%></a></td>
-						<td>안사니스토어</td>
-						<td><%=n.getNoticeDate()%></td>
-						<td><%=n.getNoticeReadCount()%></td>
+						<th scope="row"><%=f.getFreeBoardNo()%></th>
+						<td><a href="/noticeView.do?noticeNo=<%=f.getFreeBoardNo()%>"><%=f.getFreeBoardTitle()%></a></td>
+						<td><%=f.getFreeBoardWriter()%></td>
+						<td><%=f.getFreeBoardDate()%></td>
+						<td><%=f.getFreeBoardReadCount()%></td>
 					</tr>
 				</tbody>
 				<%
@@ -221,7 +214,7 @@ tbody tr>td:nth-child(2) {
 		</div>
 	</div>
 	<script>
-		$(".tablink:eq(0)").addClass("active");
+		$(".tablink:eq(3)").addClass("active");
 
 		$(".tablink").on("click", function() {
 			const selectedIndex = $(".tablink").index(this);

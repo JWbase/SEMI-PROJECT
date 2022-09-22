@@ -166,9 +166,9 @@ tbody tr>td:nth-child(2) {
 				</a></li>
 				<li><a href="#"> <span class="tablink">구매후기</span>
 				</a></li>
-				<li><a href="#"> <span class="tablink">자유게시판</span>
-				</a></li>
 				<li><a href="/photoList.do"> <span class="tablink">사진전</span>
+				</a></li>
+				<li><a href="/freeBoardList.do?reqPage=1"> <span class="tablink">자유게시판</span>
 				</a></li>
 			</ul>
 		</nav>
@@ -190,7 +190,7 @@ tbody tr>td:nth-child(2) {
 		</div>
 	</div>
 	<script>
-		$(".tablink:eq(3)").addClass("active");
+		$(".tablink:eq(2)").addClass("active");
 
 		$(".tablink").on("click", function() {
 			const selectedIndex = $(".tablink").index(this);

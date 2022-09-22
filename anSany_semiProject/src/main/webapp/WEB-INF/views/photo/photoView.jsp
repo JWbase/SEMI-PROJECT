@@ -64,20 +64,21 @@ p {
 }
 
 #photoContent>img {
-	max-height: 500px;
-	max-width: 500px;
+	max-height: 800px;
+	max-width: 800px;
 }
 
 .wrap-bottom {
 	width: 960px;
 	margin: 0 auto;
+	margin-bottom: 36px;
 }
 
-.wrap-bottom>div>a, button {
+.wrap-bottom>div>a {
 	display: block;
-	width: 100px;
-	line-height: 30px;
-	height: 30px;
+	width: 80px;
+	line-height: 24px;
+	height: 24px;
 	text-decoration: none;
 	color: black;
 	border: 1px solid black;
@@ -85,6 +86,22 @@ p {
 	font-weight: 600;
 	text-align: center;
 	float: right;
+	font-size: 14px;
+}
+
+.wrap-bottom>div>button {
+	display: block;
+	width: 80px;
+	line-height: 24px;
+	height: 24px;
+	text-decoration: none;
+	color: black;
+	border: 1px solid black;
+	border-radius: 30px;
+	font-weight: 600;
+	text-align: center;
+	float: right;
+	font-size: 14px;
 }
 
 .wrap-bottom>div>button {
@@ -128,7 +145,6 @@ th {
 
 .inputCommentBox>form>ul>li:first-child>span {
 	font-size: 80px;
-	color: #ccc;
 }
 
 .inputCommentBox>form>ul>li:nth-child(2) {
@@ -142,8 +158,16 @@ th {
 }
 
 .inputCommentBox>form>ul>li:last-child {
-	width: 10%
+	width: 10%;
 }
+
+.inputCommentBox>form>ul>li:last-child>button {
+	height: 96px;
+	border: 1px solid black;
+	background-color: black;
+	color: #fff;
+}
+
 
 .inputRecommentBox {
 	margin: 30px 0px;
@@ -164,7 +188,6 @@ th {
 
 .inputRecommentBox>form>ul>li:first-child>span {
 	font-size: 50px;
-	color: #ccc;
 }
 
 .inputRecommentBox>form>ul>li:nth-last-child(2) {
@@ -178,6 +201,12 @@ th {
 
 .inputRecommentBox>form>ul>li:last-child {
 	width: 10%;
+}
+.inputRecommentBox>form>ul>li:last-child>button {
+	height: 96px;
+	border: 1px solid black;
+	background-color: black;
+	color: #fff;
 }
 
 /* 댓글관련 css */
@@ -206,12 +235,10 @@ th {
 
 .posting-comment>li:first-child .material-icons {
 	font-size: 80px;
-	color: #ccc;
 }
 
 .posting-comment.reply>li:first-child .material-icons:first-child {
 	font-size: 40px;
-	color: #ccc;
 }
 
 .posting-comment.reply>li:last-child {
@@ -255,6 +282,15 @@ th {
 .posting-comment>li:last-child>.comment-link>a:hover {
 	text-decoration: underline;
 }
+
+.comment-link>a {
+	text-decoration: none;
+	color: #000;
+}
+
+.material-icons {
+	color: #222222;
+}
 </style>
 </head>
 <body>
@@ -262,6 +298,26 @@ th {
 	<div class="page-wrap">
 		<div class="page-content">
 			<div class="page-title">사진전</div>
+			<%
+			if (m != null && p.getPhotoWriter().equals(m.getMemberId())) {
+			%>
+			<div class="wrap-bottom">
+				<div>
+					<button onclick="photoDelete(<%=p.getPhotoNo()%>);">삭제</button>
+					<a href="/photoUpdateFrm.do?photoNo=<%=p.getPhotoNo()%>">수정</a>
+				</div>
+			</div>
+			<%
+			} else if (m != null && m.getMemberLevel() == 1) {
+			%>
+			<div class="wrap-bottom">
+				<div>
+					<button onclick="photoDelete(<%=p.getPhotoNo()%>);">삭제</button>
+				</div>
+			</div>
+			<%
+			}
+			%>
 
 			<table class="table table-group-divider" id="photoView">
 				<tr class="table-secondary">
@@ -288,6 +344,7 @@ th {
 			<%
 			if (m != null) {
 			%>
+
 			<div class="inputCommentBox">
 				<form action="/insertComment.do" method="post">
 					<ul>
@@ -298,7 +355,7 @@ th {
 							type="hidden" name="pCommentRef" value="0"> <textarea
 								class="input-form" name="pCommentContent"></textarea></li>
 						<li>
-							<button type="submit" class="btn-submit">등록</button>
+							<button type="submit" class="btn-repl">댓글쓰기</button>
 						</li>
 					</ul>
 				</form>
@@ -378,7 +435,7 @@ th {
 								type="hidden" name="pCommentRef" value="<%=pc.getpCommentNo()%>">
 								<textarea class="input-form" name="pCommentContent"></textarea></li>
 							<li>
-								<button type="submit" class="btn">등록</button>
+								<button type="submit" class="btn-repl">댓글쓰기</button>
 							</li>
 						</ul>
 					</form>
@@ -390,34 +447,11 @@ th {
 				}
 				%>
 			</div>
-
-			<%
-			if (m != null && p.getPhotoWriter().equals(m.getMemberId())) {
-			%>
-			<div class="wrap-bottom">
-				<div>
-					<button onclick="photoDelete(<%=p.getPhotoNo()%>);">삭제</button>
-					<a href="/photoUpdateFrm.do?photoNo=<%=p.getPhotoNo()%>">수정</a>
-				</div>
-			</div>
-			<%
-			} else if (m != null && m.getMemberLevel() == 1) {
-			%>
-			<div class="wrap-bottom">
-				<div>
-					<button onclick="photoDelete(<%=p.getPhotoNo()%>);">삭제</button>
-				</div>
-			</div>
-			<%
-			}
-			%>
-
-
 		</div>
-
 	</div>
 
 	<script>
+	
 		function photoDelete(photoNo){
 			if(confirm("삭제하시겠습니까?")) {
 				location.href="/photoDelete.do?photoNo="+photoNo;
