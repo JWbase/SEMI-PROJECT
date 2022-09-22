@@ -110,4 +110,28 @@ public class PhotoService {
 		return result;
 	}
 
+	public int updatePhotoComment(PhotoComment pc) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.updateNoticeComment(conn, pc);
+		if(result > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public int deletePhotoComment(int pCommentNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.deleteNoticeComment(conn, pCommentNo);
+		if(result > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
 }

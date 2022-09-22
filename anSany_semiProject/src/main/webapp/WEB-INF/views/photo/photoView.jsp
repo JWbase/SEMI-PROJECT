@@ -168,7 +168,6 @@ th {
 	color: #fff;
 }
 
-
 .inputRecommentBox {
 	margin: 30px 0px;
 	display: none;
@@ -197,11 +196,13 @@ th {
 .inputRecommentBox>form>ul>li:nth-last-child(2)>textarea.input-form {
 	height: 96px;
 	min-height: 96px;
+	resize: none;
 }
 
 .inputRecommentBox>form>ul>li:last-child {
 	width: 10%;
 }
+
 .inputRecommentBox>form>ul>li:last-child>button {
 	height: 96px;
 	border: 1px solid black;
@@ -374,9 +375,9 @@ th {
 						<p class="comment-info">
 							<span><%=pc.getpCommentWriter()%></span> <span><%=pc.getpCommentDate()%></span>
 						</p>
-						<p class="comment-content"><%=pc.getpCommentContentBr()%>
-							<textarea name="ncContent" class="input-form"
-								style="min-height: 96px; display: none;"><%=pc.getpCommentContent()%></textarea>
+						<p class="comment-content"><%=pc.getpCommentContentBr()%></p> <textarea
+							name="pCommentContent" class="input-form"
+							style="min-height: 96px; display: none;"><%=pc.getpCommentContentBr()%></textarea>
 						<p class="comment-link">
 							<%
 							if (m != null) {
@@ -386,7 +387,8 @@ th {
 							%>
 							<a href="javascript:void(0)"
 								onclick="modifyComment(this,<%=pc.getpCommentNo()%>, <%=p.getPhotoNo()%>);">수정</a>
-							<a href="javascript:void(0)">삭제</a>
+							<a href="javascript:void(0)"
+								onclick="deleteComment(this,<%=pc.getpCommentNo()%>, <%=p.getPhotoNo()%>);">삭제</a>
 							<%
 							}
 							%>
@@ -412,6 +414,23 @@ th {
 						</p>
 						<p class="comment-content"><%=pct.getpCommentContentBr()%>
 						<p class="comment-link">
+							<%
+							if (m != null) {
+							%>
+							<%
+							if (m.getMemberId().equals(pct.getpCommentWriter())) {
+							%>
+							<a href="javascript:void(0)"
+								onclick="modifyComment(this,<%=pct.getpCommentNo()%>, <%=p.getPhotoNo()%>);">수정</a>
+							<a href="javascript:void(0)"
+								onclick="deleteComment(this,<%=pct.getpCommentNo()%>, <%=p.getPhotoNo()%>);">삭제</a>
+							<%
+							}
+							%>
+							<%
+							}
+							%>
+						</p>
 					</li>
 				</ul>
 				<%
@@ -470,7 +489,45 @@ th {
 		});
 		
 		function modifyComment(obj,pCommentNo,photoNo) {
+			$(obj).parent().prev().show();
+			$(obj).parent().prev().prev().hide();
+			$(obj).text("수정");
+			$(obj).attr("onclick","modifyComplete(this,"+pCommentNo+","+photoNo+")");
 			
+			$(obj).next().text("취소");
+			$(obj).next().attr("onclick","modifyCancle(this,"+pCommentNo+","+photoNo+")");
+			
+			$(obj).next().next().hide();
+		}
+		function modifyCancle(obj,pCommentNo,photoNo){
+			$(obj).parent().prev().hide();
+			$(obj).parent().prev().prev().show();
+			
+			$(obj).prev().text("수정");
+			$(obj).prev().attr("onclick","modifyComment(this,"+pCommentNo+","+photoNo+")");
+			$(obj).text("삭제");
+			$(obj).attr("onclick","deleteComment(this,"+pCommentNo+","+photoNo+")");
+			$(obj).next().show();
+		}
+		
+		function modifyComplete(obj,pCommentNo,photoNo){
+			const form = $("<form action='/photoCommentUpdate.do' method='post'></form>");
+			const pCommentInput = $("<input type ='text' name='pCommentNo'>");
+			pCommentInput.val(pCommentNo);
+			form.append(pCommentInput);
+			const photoInput = $("<input type='text' name='photoNo'>");
+			photoInput.val(photoNo);
+			form.append(photoInput);
+			const pCommentContent = $(obj).parent().prev();
+			form.append(pCommentContent);
+			$("body").append(form);
+			form.submit();
+		}
+		
+		function deleteComment(obj,pCommentNo,photoNo){
+			if(confirm("댓글을 삭제하시겠습니까?")){
+				location.href = "/deletePhotoComment.do?pCommentNo="+pCommentNo+"&photoNo="+photoNo;
+			}
 		}
 	</script>
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>

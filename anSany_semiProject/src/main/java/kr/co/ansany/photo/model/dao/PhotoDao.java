@@ -250,4 +250,40 @@ public class PhotoDao {
 		}
 		return list;
 	}
+
+	public int updateNoticeComment(Connection conn, PhotoComment pc) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "update photo_comment_tbl set pComment_content= ? where pComment_no = ?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, pc.getpCommentContent());
+			pstmt.setInt(2, pc.getpCommentNo());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		
+		return result;
+	}
+
+	public int deleteNoticeComment(Connection conn, int pCommentNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "delete from photo_comment_tbl where pComment_No = ?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, pCommentNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
 }
